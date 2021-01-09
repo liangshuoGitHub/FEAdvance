@@ -4,7 +4,7 @@ heroImage: /images/icons/ironMan.png
 heroText: 
 tagline: FE INTERVIEW
 actionText: 开始 →
-actionLink: /views/css-doc/
+actionLink: /views/html-doc/
 features:
 - title: 简洁至上
   details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
