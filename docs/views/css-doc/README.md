@@ -5,7 +5,109 @@ sidebarDepth: 2
 
 # CSS <img src='/images/icons/hulk.png' width='50' style='margin-top:-15px'> 
 
+## CSS3的新特性
+- 选择器
+    - E:first-child {} [匹配父元素中第一个E元素]
+    - E:last-child {} [匹配父元素中最后一个E元素]
+    - E:nth-child(n) {} [匹配父元素中的第n个子元素E]
+    - E:empty {} [匹配没有任何子元素（包括text节点）的元素E]
 
+- 弹性盒子
+    - display: flex
+
+- 盒子模型（盒子大小）
+    - box-sizing [标准：content-box；怪异：border-box]
+
+- 边框
+    - 图片：border-image: url("");
+    - 圆角：border-radius: 5px;
+    - 阴影：box-shadow;
+- 背景
+    - 图片：background-image
+    - 尺寸：background-size: ~px / ~% / cover / contain
+    - 定位背景图像：background-position：top left / x% y% / xpx ypx
+    - 设置background-position 计算的参考位置：background-origin：
+        - border-box：从border区域开始显示背景。
+        - padding-box：从padding区域开始显示背景。
+        - content-box：从content区域开始显示背景。
+        
+        <img src='/images/background-origin.gif' style='margin-top:10px'>
+    - 裁切背景：background-clip
+        - no-clip：从border区域向外裁剪背景。
+        - border-box：从border区域向外裁剪背景。
+        - padding-box：从padding区域向外裁剪背景。
+        - content-box：从content区域向外裁剪背景。
+    - 渐变背景
+        - 线性渐变：background-image: linear gradient( to bottom right, black, white );
+        - 径向渐变：background-image：radial gradient( circle, red, yellow, green );circle 表示圆形，ellipse 表示椭圆形。默认值是 ellipse
+    - 可以设置多重背景，多个属性值之间用逗号隔开
+``` css
+    background-image: url(https://static.runoob.com/images/mix/54cf2365000140e600740095.jpg),
+                url(https://static.runoob.com/images/mix/54cf238a0001728d00740095.jpg),
+                url(https://static.runoob.com/images/mix/54cf23b60001fd9700740096.jpg);
+    background-position: left top, 100px 0, 200px 0;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+```
+
+- 文本效果
+    - 阴影
+        - box-shadow
+        - text-shadow
+        - 顺序：水平阴影->垂直阴影->模糊->阴影尺寸->颜色->外阴影转到内阴影
+        - ::after & ::before伪元素也可以添加阴影
+    - 显示溢出内容 text-overflow
+        - clip 裁剪
+        - ellipsis 显示省略号
+    - 当前行超过指定容器的边界时是否断开换行 word-wrap
+        - normal
+        - break-word：内容将在边界内换行。如果需要，词内换行（word-break）也会发生。
+    - 单词拆分换行规则 word-break
+        - break-all
+        - keep-all
+
+- 动画
+    - 属性
+        - animation
+        - @keyframes
+    - 例：把 "myfirst" 动画捆绑到 div 元素，时长：5 秒
+``` css
+    div{
+        animation: myfirst 5s;
+    }
+    @keyframes myfirst{
+        from { background: red; }
+        to { background: black }
+    }
+    @keyframes myfirst{
+        0% { background: red; }
+        25% { background: black; }
+        100% { background: white; }
+    }
+```
+
+- 媒体查询 @media
+    - 媒体类型
+        - all 所有
+        - print 打印机
+        - screen 电脑手机平板 
+        - speech 屏幕阅读器
+    - 参数
+        - width:浏览器可视宽度。
+        - height:浏览器可视高度。
+        - device-width:设备屏幕的宽度。
+        - device-height:设备屏幕的高度。
+        - orientation:检测设备目前处于横向还是纵向状态。
+        - aspect-ratio:检测浏览器可视宽度和高度的比例。(例如：aspect-ratio:16/9)
+        - device-aspect-ratio:检测设备的宽度和高度的比例。
+    - CSS2已经用link标签的形式支持了media，只不过会增加http请求
+``` css
+    /* css2 */
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:960px)" href="style.css">
+    /* css3 */
+    @media screen and (min-width:960px) and (max-width:1200px){
+        body{background:yellow;}
+    }
+```
 ## 盒子水平垂直居中的五大方案
 
 
