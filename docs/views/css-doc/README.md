@@ -29,7 +29,7 @@ sidebarDepth: 2
     - 设置background-position 计算的参考位置：background-origin：
         - border-box：从border区域开始显示背景。
         - padding-box：从padding区域开始显示背景。
-        - content-box：从content区域开始显示背景。
+        - content-box：从content区域开  始显示背景。
         
         <img src='/images/background-origin.gif' style='margin-top:10px'>
     - 裁切背景：background-clip

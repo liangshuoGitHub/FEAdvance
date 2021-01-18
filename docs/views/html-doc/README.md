@@ -1,7 +1,3 @@
----
-sidebarDepth: 2
----
-
 # HTML #
 ## HTML5的新特性
 - 新标签

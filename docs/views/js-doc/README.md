@@ -4,17 +4,17 @@ sidebarDepth: 2
 
 # Javascript 部分 <img src='/images/icons/nickFury.png' width='50' style='margin-top:-15px'> 
 
-## js中的8种数据类型
+## js中的7种数据类型
 ::: tip
 nunsb so fun
 :::
 1、基本类型
 ``` js 
-number, null, undefined, string, boolean
+number, null, undefined, string, boolean, symbol(es6新增)
 ```
 2、引用类型
 ``` js
-symbol(es6新增), object, function
+ object
 ```
 
 3、数据类型检测
@@ -28,7 +28,7 @@ typeof new Function() === 'function';    // true
 typeof Symbol() === 'symbol';   // true
 typeof new Object() === 'object'  // true
 补充：
-typeof new Array() === 'object'   //true  不过数组并不属于八种数据类型之一
+typeof new Array() === 'object'   //true  不过数组并不属于七种数据类型之一
 ```
 - instanceof 
 
