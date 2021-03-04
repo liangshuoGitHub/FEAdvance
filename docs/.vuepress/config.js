@@ -5,6 +5,7 @@ module.exports = {
   head: [["link", { rel: "icon", href: "/images/icons/groot.png" }]],
   // head: [['link', { rel: 'stylesheet', href: '/styles/common.less' }]],
   port: 9999,
+  host: '0.0.0.0',
   themeConfig: {
     // displayAllHeaders: true,
     logo: "/images/icons/ironMan.png",
