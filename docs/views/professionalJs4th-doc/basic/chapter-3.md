@@ -461,7 +461,7 @@ ECMAScript中的字符串是不可变的（immutable），一旦创建，值不�
     console.log(sentence); // 'My name is ls.'
 ```
 
-#### 原始字符串
+#### 6.原始字符串
 使用模板字符串也可以直接获取原始的模板字面量内容，而不是被转换后的字符。两种方法：
 - 使用默认的`String.raw`标签函数
 ```js
@@ -473,13 +473,207 @@ ECMAScript中的字符串是不可变的（immutable），一旦创建，值不�
 - 通过标签函数的第一个参数（即字符串数组）的.raw属性取得每个字符串的原始内容：
 ``` js
 function printRaw(temp){
-    console.log(temp, temp.raw);
+    console.log(temp, temp.raw);  // ["©","↵"]， ["\u00A9", "\n"]
     for(const val of temp){
-        console.log(val)
+        console.log(val)//       // "©","↵"(换行符)
     }
     for(const val of temp.raw){
-        console.log(val)
+        console.log(val);    // "\u00A9", "\n"
     }
 }
 printRaw`\u00A9${'and'}\n`;
 ```
+
+### 3.4.7 Symbol 类型
+符号是**原始值**，符号实例是**唯一且不可变**的，它的**作用是**通过创建唯一记号，进而用做非字符串形式的对象属性，来确保对象属性使用唯一标识符，防止出现属性冲突。
+
+#### 1. 符号的基本用法
+- 符号需要使用`Symbol()`函数初始化，`typeof`操作符对其返回`"symbol"`。
+- 调用`Symbol()`函数时，可以传入一个字符串参数作为符号的描述，这个参数可用来调试代码。
+- 符号没有字面量语法。
+- `Symbol()`函数不能与`new`关键字一起作为构造函数使用，这是为了避免创建符号包装对象。如确实想用符号包装对象，可以借用`Object()`函数：
+``` js
+const mySymbol = new Symbol(); // TypeError: Symbol is not a constructor
+// 借用Object()函数
+const mySymbol = Symbol();
+const myWrappedSymbol = Object(mySumbol);
+console.log(typeof myWrappedSymbol); // 'object'
+```
+::: tip 字面量语法
+字面量就是指这个量本身，也即描述自己的量，一眼就能看到值的量。比如字面量3，字面量"ABC"。
+
+字面量对应的是变量，比如string x，我们不能确定它的值。
+:::
+::: tip JavaScript 包装对象
+**定义**
+
+对象是JavaScript语言最主要的数据类型，三种原始类型的值--数值、字符串、布尔值在一定条件下，也能转换为对象，也就是原始类型值的"包装对象"(`wrapper`)。
+
+所谓包装对象，指的是数值、字符串、布尔值分别对应的`Number`、`String`、`Boolean`三个原生对象，这三个对象可以把原始值"包装"成对象。
+
+
+``` js
+const v1 = new Number(123);
+const v2 = new String('abc');
+const v3 = new Boolean(true);
+
+typeof v1; // 'object'
+typeof v2; // 'object'
+typeof v3; // 'object'
+```
+
+包装对象的设计目的有两个：
+- 使得“对象”这种类型可以覆盖JavaScript所有的值，整门语言有一个通用的数据模型。
+- 使得原始类型的值也有办法调用自己的方法。
+
+总结一下，`Number`、`String`、`Boolean`三个原生对象作为构造函数使用时可以将原始类型值转换为对象；作为普通函数时，可以将任意类型值转换为原始类型。
+
+**实例方法**
+
+三种包装对象各自提供了许多实例方法。这里介绍两种它们共有的、从`Object`对象继承的方法：`valueOf()`和`toString()`。
+
+valueOf()
+
+`valueOf()`方法返回包装对象实例对应的原始类型的值。
+```js
+new String('xxx').valueOf();  // 'xxx'
+new Number(12345).valueOf();  // 12345
+new Boolean(false).valueOf(); // false
+```
+`toString()`方法返回包装对象实例对应的原始类型的值的字符串形式。
+```js
+new String('xxx').toString();  // 'xxx'
+new Number(12345).toString();  // '12345'
+new Boolean(false).toString(); // 'false'
+```
+
+**原始类型与实例对象的自动转换**
+
+原始类型的值有时会当做包装对象调用，即调用包装对象的属性和方法。这时，JavaScript引擎会自动将原始类型值砖混为包装对象实例，并在使用后立刻销毁该实例。比如字符串可以调用length属性返回其长度：
+```js
+const str = 'abc'
+str.length; // 3
+// 等同于
+const strObj = new String(str);
+/* 
+String {
+    0: 'a',
+    1: 'b',
+    2: 'c',
+    length: 3.
+    [[PrimitiveValue]]: "acb"   // 原始值
+}
+*/
+strObj.length; // 3
+```
+上面代码中，`abc`是一个字符串，本身不是对象，不能调用`length`属性。JavaScript引擎自动把它转成包装对象，在这个对象上调用`length`属性。调用结束后，销毁此临时对象,下次再调用字符串的属性时，实际上是调用一个新生成的对象，而不是上次调用时生成的对象。这就是原始类型与实例对象的自动转换。 
+
+自动转换生成的包装对象是只读的，无法修改，也就无法为其添加新属性，要为字符串添加属性，只有在它的原型对象`String.prototype`上定义：
+``` js
+// 定义一个double方法，使得字符串和数字翻倍
+// 注意操作原型不能使用箭头函数，因为箭头函数没有自己的this，在箭头函数中调用this，this指向箭头函数定义位置中的this
+String.prototype.double = function(){
+    return this.valueOf() + this.valueOf();  // 使用原始值
+}
+
+'abc'.double(); // 'abcabc'
+
+Number.prototype.double = function() {
+    return this.valueOf() + this.valueOf();  // 使用原始值
+}
+
+(123).double(); // 246。注意这里数值直接调用方法时要加小括号，否则点运算符(.)会被解释为小数点。
+
+```
+:::
+
+#### 2. 使用全局符号注册表
+如果运行时的不同部分需要**共享和重用**符号实例，可以用一个**字符串作为键**，在全局符号注册表中创建并重用符号，该键会被用作**符号描述**。
+- 需要使用`Symbol.for()`方法。
+- 使用某个字符串调用时，会检查全局运行时注册表，如果不存在对应符号，就会生成一个新符号实例并添加到注册表中，如果存在与该字符串对应的符号，就返回该符号实例。
+``` js
+const v1 = Symbol.for('abc'); // 创建新符号
+const v2 = Symbol.for('abc'); // 重用已有符号
+```
+- 即便采用相同的符号描述，在全局注册表中定义的符号与使用`Symbol()`定义的符号也不等同：
+``` js
+Symbol('aa') === Symbol.for('aa');    // false
+```
+- 可以使用`Symbol.keyFor()`来查询全局注册表，该方法接收符号，返回全局符号对应的字符串键（符号描述）：
+``` js
+// 创建全局符号
+const v1 = Symbol.for('aa');
+console.log(Symmbol.keyFor(v1)); // 'aa';
+
+// 创建普通符号，使用Symbol.keyFor()查询普通符号会返回undefined
+const v2 = Symbol('bb');
+console.log(Symbol.keyFor(v2));  // undefined
+
+// 如果传给Symbol.keyFor()的不是符号，会报错
+console.log(Symbol.keyFor(123));  // TypeError: 123 is not a symbol
+
+```
+
+#### 3. 使用符号作为属性
+- 可以使用字符串或者数值作为属性的地方都可以用符号，包括对象字面量属性和`Object.defineProperty()`/`Object.defineProperties()`定义的属性。对象字面量只能在计算属性语法（ES6）中使用符号作为属性：
+```js
+const s1 = Symbol('aa'),
+s2 = Symbol('bb'),
+s3 = Symbol('cc'),
+s4 = Symbol('dd');
+
+const obj = {
+    [s1]: 123,
+    x:123456
+}
+// 或者 obj[s1] = 123
+console.log(obj); // { Symbol(aa): 123 }
+
+Object.defineProperty( obj , s2, { value: '2222' } );
+console.log(obj); // { Symbol(aa): 123, Symbol(bb): '2222' }
+
+Object.defineProperties( obj, {
+    [s3]: {value: '333'},
+    [s4]: {value: '444'}
+})
+console.log(obj); // { Symbol(aa): 123, Symbol(bb): '2222', Symbol(cc): '333', Symbol('dd': '4444') }
+
+```
+- `Object.getOwnPropertyNames()` 返回对象实例的**常规属性数组**。
+- `Object.getOwnPropertySymbols()` 返回对象实例的**符号属性数组**。
+- `Reflect.ownKeys()` 返回对象实例的**常规属性数组和符号属性数组**。
+- `Object.getOwnPropertyDescriptors()` 返回同时包含**常规属性和符号属性的对象**。
+```js
+const obj = {
+    name: 'ls',
+    age: 20,
+    [Symbol('say')]: 'mine'
+}
+console.log(Object.getOwnPropertyNames(obj));  //  ["name", "age"]
+console.log(Object.getOwnPropertySymbols(obj)); // [Symbol(say)]
+console.log(Reflect.ownKeys(obj)); // ['name', 'age', Symbol(say)]
+console.log(Object.getOwnPropertyDescriptors(obj));
+/*
+{
+    name: {value: 'ls', writtable: true, enumerable: true, configurable: true},
+    age: {...},
+    Symbol(say): {...}
+}
+*/
+```
+
+- 因为符号属性是对内存中符号的一个引用，所以直接创建并用作属性的符号不会消失。但是如果没有**显式**的保存对这些属性的引用，就必须遍历对象的所有符号属性才能找到相应的属性键：
+``` js
+const o = {
+    [Symbol('name')]: 'ls',
+    [Symbol('age')]: 18
+}
+
+const barSymbol = Object.getOwnPropertySymbols(o).find((val)=>String(val).match(/nam/));
+console.log(barSymbol); // Symbol(name)
+```
+4. 常用内置符号
+- 内置符号用于暴露语言内部行为，开发者可以直接访问、重写或模拟这些行为。
+- 内置符号最重要的用途是重新定义它们，来改变原生结构的行为。如`for-of`循环会在相关对象上使用`Symbol.iterator`属性，我们可以通过在自定义对象上重新定义`Symbol.iterator`的值，来改变`for-of`在迭代该对象时的行为。
+- 内置符号以`Symbol`工厂函数**字符串属性**的形式存在，指向一个符号的实例。
+- 所有**内置符号属性**都是不可写、不可枚举、不可配置的。
