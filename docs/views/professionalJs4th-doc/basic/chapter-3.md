@@ -137,7 +137,7 @@ console.log(x); // 'hello'
 
 - 暂时性死区
 
-        let声明的变量不会被提升到作用域的顶部。在let声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出ReferenceError。
+    let声明的变量不会被提升到作用域的顶部。在let声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出ReferenceError。
 ``` js
 // name 会被提升
 console.log(name); // undefined
@@ -505,12 +505,12 @@ const mySymbol = Symbol();
 const myWrappedSymbol = Object(mySumbol);
 console.log(typeof myWrappedSymbol); // 'object'
 ```
-::: tip 字面量语法
+::: tip 理解：字面量语法
 字面量就是指这个量本身，也即描述自己的量，一眼就能看到值的量。比如字面量3，字面量"ABC"。
 
 字面量对应的是变量，比如string x，我们不能确定它的值。
 :::
-::: tip JavaScript 包装对象
+::: tip 理解：JavaScript 包装对象
 **定义**
 
 对象是JavaScript语言最主要的数据类型，三种原始类型的值--数值、字符串、布尔值在一定条件下，也能转换为对象，也就是原始类型值的"包装对象"(`wrapper`)。
@@ -885,7 +885,7 @@ v5 = -v5; // 200
 ::: tip 注意（无符号整数）
     默认情况下，ECMAScript中所有整数都是有符号的，不过也有无符号整数，对其而言，第32位不表示符号，因为只有正值，因为符号位表示数值，所以无符号整数比有符号整数范围更大。
 :::
-::: tip 反码加1是怎么加的？
+::: tip 理解：反码加1是怎么加的？
 1111 1111 1111 1111 1111 1111 1110 1101  
 加1得到：  
 1111 1111 1111 1111 1111 1111 1111 1110  
