@@ -684,3 +684,101 @@ a()()();        //Window
 <img src='/images/ajax.png' width='65%' style='margin-left:100px'>
 <img src='/images/jsonp.png' width='65%' style='margin-left:100px'>
 <img src='/images/jsonp1.png' width='65%' style='margin-left:100px'>
+
+## get和post的区别
+- `get`通过`url`传递参数，用户可以看到和修改参数，`post`不可以，相对`get`更安全
+- `get`传递参数有长度限制，一般不可超过2000个字符，大小不能超过2kb，而`post`传递的数据量较大，默认不受限制
+- `get`用于从服务端获取信息，`post`用于向服务端传递信息
+
+## JSONP的实现方式
+
+### JSONP原理
+
+`JSONP`全称为`json with padding`，是解决跨域问题的一种方案。
+
+由于同源策略的限制，浏览器只允许请求同域（协议名、域名和端口号都相同）内的资源。而`script`、`link`、`image`元素不受此限制，所以我们可以利用`script`标签的开放策略从其他域获取数据。
+
+### JSONP实现思路
+1. 参数需要重组为`get`传参的形式
+2. 服务端返回的数据格式不是`json`而是`JavaScript`，所以`contentType`为`application/javascript`，内容格式为`callbackFunction(json)`
+3. 因为`script`加载完成后，它的执行上下文是`window`对象，所以`callback`回调函数要挂载到`window`上
+4. 我们可能同时发起多个`jsonp`请求，所以回调函数的命名要具有唯一性
+5. 请求结束后要移除本次请求产生的`script`标签和挂载在`window`上的回调函数，防止内存泄漏
+
+### 代码实现
+``` js
+// json参数转query
+function getQuery(data) {
+    let params = "";
+    for (const i in data) {
+        params += `${encodeURIComponent(i)}=${encodeURIComponent(data[i])}&`
+    }
+    // 如果参数是空对象就直接返回空字符串
+    params = params.length ? `?${params.substr(0, params.length - 1)}` : '';
+    return params;
+}
+
+// 主体方法
+function jsonp({ url, data, callback }) {
+    const src = url += getQuery(data); // script标签的src
+    const con = document.getElementsByTagName('head')[0];
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    con.appendChild(script);
+    let callbackFnName = Symbol(); // 保持回调函数命名唯一性
+
+    return new Promise((resolve, reject) => {
+        window[callbackFnName] = res => {
+            console.log(res);
+            con.removeChild(script);
+            delete window[callbackFnName];
+            resolve(res);
+        }
+
+        // 异常处理
+        script.onerror = err => {
+            con.removeChild(script);
+            delete window[callbackFnName];
+            console.log('some error appeared!', err);
+            reject(err);
+        }
+    })
+
+}
+
+// 调用
+jsonp({
+    url: 'www.baidu.com',
+    data: {
+        name: 'ls',
+        age: 22
+    },
+    callback(res) {
+        console.log(res);  // res是服务端返回的数据
+    }
+})
+```
+
+## 前端的本地存储策略
+
+### cookie
+`cookie`是h5之前本地存储的主要方式，用法如下：
+- 设置值：`document.cookie = "username=ls"`
+- 读取值：`document.cookie`
+`cookie`只能存储4kb以内的数据，并且在读取`cookie`时，我们获得的数据格式是`username=ls; age=12`这样的，无法通过`json.parse`拿到`json`数据，还需要单独处理，比较麻烦。除此之外，`cookie`中的数据还会在浏览器发起请求时被携带在请求头上，污染请求。
+
+### sessionStorage
+`sessionStorage`是一个全局对象，数据以键值对的方式存储，用法如下：
+- 设置值：`sessionStorage.setItem(key, value)`
+- 读取值：`sessionStorage.getItem(key)`
+- 删除值：`sessionStorage.removeItem(key)`
+
+`sessionStorage`中只能保存字符串类型的值，所以需要先将对象转换为`json`字符串再进行存储，另外存储的数据大小相较`cookie`大了很多。`sessionStorage`和`cookie`的生命周期相同，都处在一个会话周期内，浏览器关闭或标签页关闭，数据会被清空。此外，同一个网站在不同标签页打开，`sessionStorage`的数据不能共享。
+
+### localStorage
+`localStorage`的用法与`sessionStorage`相同，它有如下特点：
+- 数据存储量大
+- 不会被携带至请求头
+- 所有标签页可以共享数据
+- 除非手动删除，否则数据一直存在
