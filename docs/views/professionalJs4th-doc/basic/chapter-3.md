@@ -1340,7 +1340,7 @@ start: for(let i=0; i<10; i++){
 ```
 在上例中，start是一个标签，可以在后面通过`break`或`continue`语句引用。标签语句的典型应用场景是**嵌套循环**。
 
-### 3.6.8 break 等 continue语句
+### 3.6.8 break 和 continue语句
 1. `break`和`continue`语句为执行循环代码提供了更严格的控制手段。`break`语句会立即退出循环，强制执行循环**后**的下一条语句。`continue`语句也会立即退出循环，但会**再次从循环顶部开始执行**。示例如下：
 ``` js
 // break 语句

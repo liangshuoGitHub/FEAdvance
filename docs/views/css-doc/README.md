@@ -1,19 +1,81 @@
 ---
 # 显示两个层级
-sidebarDepth: 2  
+sidebarDepth: 3
 ---
 
 # CSS <img src='/images/icons/hulk.png' width='50' style='margin-top:-15px'> 
 
+## css选择器优先级
+
+`important!` > ID选择器 > 类选择器 = 属性选择器 = 伪类选择器 > 标签选择器 = 伪元素选择器
+
+## 伪类和伪元素的区别
+
+伪类和伪元素都是用来添加选择器的一些特殊效果。
+### 伪类
+伪类分为**状态伪类和结构性伪类**两种。
+#### 状态伪类
+状态伪类指的是在与用户交互的过程中，元素的**状态是动态变化**的。常见的状态伪类有：
+- `:link` 应用于**未被访问**过的链接
+- `:hover` 应用于鼠标**悬停**到的元素
+- `:active` 应用于**被激活**的元素
+- `:visited` 应用于**被访问过**的链接，与`:link`互斥
+- `:focus` 应用于**获得焦点**的元素
+
+#### 结构性伪类
+结构性伪类是CSS3新增的选择器，利用dom树进行元素过滤，能减少`class`和`id`的定义，使文挡结构更简洁。常见的结构性伪类有：
+- `p:first-child` 匹配第一个p元素
+- `p:last-child`  匹配最后一个p元素
+- `p:nth-child(n)` 匹配第几个或者多个p元素（p:nth-child(2n+0)匹配下标是2的倍数的所有p元素）
+- `p:nth-last-child-(n)` 与上一个一致，只不过是从最后一个元素开始查找
+- `p:nth-of-type(n)` 选择指定的元素 (nth-of-type(2)匹配属于其父元素的第二个 p 元素的每个 p)
+- `p:nth-last-of-type(n)` 与上一个一致，只不过是从最后一个元素开始查找
+- `p:first-of-type` 等同于`p:nth-of-type(1)`
+- `p:last-of-type` 等同于`p:nth-last-of-type(1)`
+- `p:only-child` 匹配属于其父元素的唯一子元素的每个p元素
+- `p:empty` 匹配空的p元素 
+
+### 伪元素
+伪元素控制的内容和元素相同，但是它本身是**基于元素的抽象**，**并不存在于文档结构中**。常用的伪元素有：
+- `::before` 在元素内容的最前面添加内容
+- `::after`  在元素内容的最后添加内容
+- `::first-letter`  选择元素文本的第一个字/字母
+- `::first-line`    选择元素文本的第一行
+
+## less和sass的用法
+### less
+#### 1. 变量
+``` css
+@baseColor: #fff;
+.box {
+    color: @baseColor;
+}
+```
+#### 2. 参数 动态数据
+``` js
+testRaduis(@bl: 5px) {
+    border-radius: @bl;
+    -webkit-border-radius: @bl;
+}
+.borderR5 {
+    .testRadius;
+}
+.borderR10 {
+    .testRadius(10px);
+    // 结果 border-radius: 10px;
+}
+```
 ## CSS3的新特性
-- 选择器
-    - E:first-child {} [匹配父元素中第一个E元素]
-    - E:last-child {} [匹配父元素中最后一个E元素]
-    - E:nth-child(n) {} [匹配父元素中的第n个子元素E]
-    - E:empty {} [匹配没有任何子元素（包括text节点）的元素E]
+- 结构性伪类选择器
+    - `p:first-child {}` 匹配父元素中第一个p元素
+    - `p:last-child {}` 匹配父元素中最后一个p元素
+    - `p:nth-child(n) {}` 匹配父元素中的第n个子元素p
+    - `p:empty {}` 匹配没有任何子元素（包括text节点）的元素p
 
 - 弹性盒子
-    - display: flex
+    - `display: flex`
+
+    [flex布局教程-阮一峰](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
 - 盒子模型（盒子大小）
     - box-sizing [标准：content-box；怪异：border-box]
