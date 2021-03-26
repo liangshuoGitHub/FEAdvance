@@ -65,6 +65,144 @@ testRaduis(@bl: 5px) {
     // 结果 border-radius: 10px;
 }
 ```
+#### 3. 嵌套
+```css
+div {
+    span {
+
+    }
+}
+```
+
+#### 4. 函数运算符
+``` js
+@baseColor: #111;
+span {
+    color: (@baseColor * 3); // #333
+}
+```
+
+### sass
+在`sass`中，变量用`$`左前缀，声明或者其他关键字、语句用`@`做前缀。
+
+#### 1. 变量 $开头
+``` css
+$baseColor: #333;
+div {
+    color: $baseColor;
+}
+```
+
+#### 2. 嵌套
+```css
+div {
+    span {
+
+    }
+}
+```
+
+#### 3. 计算
+``` css
+div {
+    width: 10px + 20px;
+}
+```
+
+#### 4. 继承
+``` css
+.class1 {
+    color: res;
+}
+.class2 {
+    @extend .class1;
+}
+```
+#### 5. 混入
+``` css
+@mixin left {
+    color: #fff;
+}
+
+@mixin right($bl: 5px) {
+    margin-right: $bl;
+}
+
+.con{
+    @include left;
+    @include right(20px);
+}
+```
+
+#### 6. 导入css文件
+``` js
+@import '../css/index.css'
+```
+
+#### 7. if...else
+下例结合使用`@mixin`和`@if...@else`演示不同方向的三角形的创建：
+``` js
+@mixin sjx($fx: left, $size: 100px, $color: red) {
+    @if($fx == top) {
+        border-color: transparent transparent $color transparent;
+        border-style: dashed dashed solid dashed;
+    }
+    @else if($fx == bottom) {
+        border-color: $color transparent transparent transparent;
+        border-style: solid dashed dashed dashed;
+    }
+    @else if($fx == left) {
+        border-color: transparent $color transparent transparent;
+        border-style: dashed solid dashed dashed;
+    }
+    #else {
+        border-color: transparent transparent transparent $color;
+        border-style: dashed dashed dashed solid;
+    }
+}
+// 调用mixin 创建一个箭头朝下的三角形
+.demo {
+    @include sjx(bottom);
+}
+```
+
+#### 8. 字符串拼接
+``` js
+$aside: left;
+div{
+    border-#{$aside}: 1px solid red;
+    // 结果是border-left
+}
+```
+
+### 9. 循环
+``` js
+// for 循环
+@for $i from 1 to 10 {
+    .div#{$i} {
+        width: #{$i}px;
+    }
+}
+
+// while 循环
+$i: 10;
+@while $i < 8 {
+    .div#{$i} {
+        width: 10px * $i;
+    }
+    $i: $i-2;
+}
+```
+
+#### 10. 自定义函数
+``` js
+@function dubble($n){
+    @return $n * 2;
+}
+#sidebar {
+    width: double(5px);
+}
+```
 ## CSS3的新特性
 - 结构性伪类选择器
     - `p:first-child {}` 匹配父元素中第一个p元素
