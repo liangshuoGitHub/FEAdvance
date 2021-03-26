@@ -277,16 +277,85 @@ this.$route.parmas.name; // ls
 - 需要注意内容按普通`HTML`插入，不会作为`Vue`模板进行编译
 - 在单文件组件里，`scoped`的样式不会应用在`v-html`内部，因为那部分`html`没被编译器处理，可以用`css modules`或用全局的`<style>`元素设置其样式
 - 动态渲染`html`非常危险，容易导致`XSS攻击`，不能在用户提交的内容上使用`v-html`，只在可信的内容上应用
-## v-if 和 v-show
-### 相同点
+### v-if 和 v-show
+#### 相同点
 两个指令都可以动态控制元素的显示与隐藏
 
-### 不同点
+#### 不同点
 `v-if`是将元素删除，而`v-show`是给元素添加`display:none`，元素还在
 ::: tip 注意
 当在`css`中给一个元素添加了`display:none`后，通过给元素添加指令`v-show=true`无法让元素显示出来。
 :::
 
+### v-else v-else-if
+前一兄弟元素必须有`v-if`或`v-else-if`，用于条件渲染
+
+### v-for
+用于元素渲染，语法为`alias in expression`。当和`v-if`一起使用时，比`v-if`优先级更高。
+
+### v-on
+- 用于绑定事件监听器，缩写是`@`，表达式可以是方法名或内联语句
+- 当监听原生`DOM`事件时，语句可以访问一个`$event`属性：`@click="handle($event)"`
+- 修饰符：
+    - `.self` 只有触发事件的元素是当前元素本身才触发
+    - `.once` 只触发一次
+    - `.left` 只在点击鼠标左键时触发
+    - `.right` 只在点击鼠标右键时触发
+    - `.middle` 只在点击鼠标中键时触发
+    - `.{keyCode | keyAlias}` 只在事件是特定键触发时才触发
+    - `.stop` 调用`event.stopPropagation()`阻止事件冒泡
+    - `.prevent` 调用`event.preventDefault()`防止默认事件
+    - `.capture` 添加事件监听器时使用`capture`模式
+    - `.passive` 以`{ passive: true }` 模式添加侦听器
+
+### v-bind
+动态绑定属性，缩写是`:`
+
+### v-model
+- 在表单控件或者组件上**创建双向数据绑定**
+- 限制
+    - `<input>`
+    - `<textarea>`
+    - `<select>`
+    - components
+- 修饰符
+    - `.number` 输入字符串转为有效的数字
+    - `.trim` 过滤首尾空格
+    - `.lazy` 取代`input`监听`change`事件。默认情况下，`v-model`在每次`input`事件触发后将输入框的值与数据进行同步，使用`.lazy`修饰符后，转为在`change`事件之后同步
+    ``` js
+    // 在change时而非input时更新
+    <input v-model.lazy='num'>
+    ```
+### v-slot
+- 用法提供具名插槽或需要接收`prop`的插槽，缩写是`#`，参数是插槽名（可选，默认的default）
+- 限制
+    - `<template>`
+    - 组件（对于一个单独的带prop的默认插槽）
+
+### v-once
+不需要表达式，只渲染元素和组件一次，后续数据更改，视图不会更新，可以用于**性能优化**
+
+### v-pre
+不需要表达式，跳过**当前元素及其子元素**的编译过程，可以用来**显示原始模板标签**。跳过大量没有指令的节点可以**加快编译**
+``` html
+<span v-pre> {{ this will not compiled }} <span>
+```
+
+### v-cloak
+不需要表达式，它和`css`规则如`[cloak] { display: none }`一起使用，可以**隐藏未编译的模板标签直到实例准备完毕**，避免弱网情况下，未编译完全的模板出现在页面中（如`{{ str }}`）
+``` css
+[v-cloak] {
+    display: none;
+}
+```
+``` html
+<div class="root" v-cloak> {{ str }} </div>
+```
+不会显示，直到编译结束
+
+## key的作用
+
+主要是为了更高效的更新向虚拟DOM
 ## vue路由懒加载(按需加载)
 `import`的方式引入组件，不利于性能优化。我们可以使用`webpack`提供的`require`进行路由懒加载
 ```js
