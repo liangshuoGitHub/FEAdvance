@@ -142,14 +142,141 @@ sidebarDepth: 3
 - MVC（Model View Controller）称为单向数据改变，默认只实现了数据驱动视图，而MVVM是双向的，其视图修改数据是通过onchange事件实现的。
 
 ## 组件之间传值的方式
-- Vue 
-    - 路由传递
-    - $on/$emit 发布订阅
-    - Provide / inject
-    - slot
-    - $parent / $children
-    - vuex
+### $on $emit 发布订阅
+在父组件中通过`$on`绑定事件和传递参数给子组件，在子组件通过`$emit(functionName, arg)`触发
 
+### event bus 事件总线
+- 全局挂载
+``` js
+// 在main.js中初始化
+Vue.prototype.$Bus = new Vue();
+
+// 发送事件
+this.$Bus.$emit('user', {
+    name: 'ls',
+    age: 18
+})
+
+// 接收事件
+this.$Bus.$on('user',({name, age})=>{
+    console.log(name, age);
+})
+```
+
+- 按需加载
+``` js
+// 新建 bus.js
+import Vue form 'vue';
+const Bus = new Vue();
+export Bus;
+
+// 业务代码中引入并使用
+import Bus from 'bus.js';
+
+// 发送事件
+this.$Bus.$emit('user', {
+    name: 'ls',
+    age: 22
+})
+
+// 接收事件
+this.$bus.$on('user', ({name, age})=> {
+    console.log(name, age);
+})
+```
+
+### 获取根/父/子组件实例
+
+在绝大多数情况下，最好不要直接触达另一个组件实例内部或手动操作`DOM`，不过有些情况向下也可以。
+
+#### 1. 访问根实例
+可以通过`$root`属性访问组件的根实例，例如在这个根实例中：
+``` js
+// Vue 根实例
+new Vue({
+    date: {
+        foo: 1
+    },
+    computed: {
+        bar() {……};
+    },
+    methods: {
+        baz() {……};
+    }
+})
+```
+所有的子组件都可以将这个实例作为一个全局`store`来访问或使用。
+``` js
+// 获取根组件的数据
+this.$root.foo
+
+// 写入根组件的数据
+this.$root.foo = 2
+
+// 访问根组件的计算属性
+this.$root.bar
+
+// 调用根组件的方法
+this.$root.baz()
+```
+#### 2. 访问父/子组件实例
+
+- 子组件可以用`this.$parent`访问父实例
+- 子实例会被推入父实例的`$children`数组中
+
+应该节制的使用`$parent`和`$children`，它们主要是作为访问组件的应急方案。更推荐使用`props`和`events`实现父子组件通信。
+
+#### 3. 访问子组件实例或子元素
+
+- 如果在普通`dom`元素上使用，引用就指向`dom`元素；如果用在子组件上，引用就指向组件实例
+- 使用`this.$refs.ref值`就能访问或修改数据与方法
+- `$refs`只会在组件渲染完成后生效，并且不是响应式的。这也是操作子组件的一中备用方案，应该避免在模板和计算属性中访问`$refs`
+
+### 路由传参
+路由传参分为**声明式和编程式**，声明式会在模板中乱入比较多的逻辑，所以一般使用编程式路由传参，分为以下两种：
+- `query`
+`query`类似于`get`请求，参数会显示在地址栏上，刷新**不会**丢失
+``` js
+// 传递
+this.$router.push({
+    path: '/list',
+    query: {
+        name: 'ls'
+    }
+})
+
+// 接收
+this.$route.query.name; // ls
+```
+
+- `params`
+`params`传参，参数不会暴露在地址栏中，刷新的话参数**会**丢失，并且需要在路由文件中配置组件的`name`属性。当`path`存在时，`params`会被忽略
+``` js
+// 传递
+this.$router.push({
+    name: 'orderList',
+    params: {
+        name: 'ls'
+    }
+})
+
+// 接收
+this.$route.parmas.name; // ls
+```
+
+## 指令
+### v-text
+``` js
+<span v-text='msg'></span>
+// 和下面写法一样
+<span> {{ msg }} </span>
+```
+
+### v-html
+- `v-html`指令更新元素的`innerHTML`
+- 需要注意内容按普通`HTML`插入，不会作为`Vue`模板进行编译
+- 在单文件组件里，`scoped`的样式不会应用在`v-html`内部，因为那部分`html`没被编译器处理，可以用`css modules`或用全局的`<style>`元素设置其样式
+- 动态渲染`html`非常危险，容易导致`XSS攻击`，不能在用户提交的内容上使用`v-html`，只在可信的内容上应用
 ## v-if 和 v-show
 ### 相同点
 两个指令都可以动态控制元素的显示与隐藏
