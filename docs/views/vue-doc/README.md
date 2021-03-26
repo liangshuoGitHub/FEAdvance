@@ -1,15 +1,38 @@
 ---
-sidebarDepth: 2
+sidebarDepth: 3
 ---
 
 # Vue 部分 <img src='/images/icons/groot.png' width='50' style='margin-top:-15px'> 
 
+## 生命周期
+
+### 概念
+
+`Vue`的生命周期描述了`Vue`实例**从创建到销毁**的过程：
+
+开始创建、初始化数据、编译模板、挂载Dom、渲染、更新渲染、销毁。
+
+每一个组件或者实例都会经历完整的生命周期：创建、运行、销毁。
+
+### 整个过程的描述
+
+- `Vue`实例通过`new Vue()`创建出来后会初始化事件和生命周期，然后会执行`beforeCreate`钩子函数，这时无法访问数据和真实的`dom`（`$el`），一般不作操作
+- 在`created`钩子函数中，已经**可以获取和更改数据**，可以在这里**获取初始化数据**，这里也是在渲染前**倒数第二次**修改数据的机会，不会触发其他钩子函数
+- 接下来开始寻找实例对应的模板，把模板编译为虚拟`dom`并放到`render`函数中准备渲染，然后执行`beforeMount`钩子函数，这时**虚拟**`dom`已经创建完成，马上就要渲染，在这里也可以修改数据，不会触发其它钩子，这里是**渲染前最后一次**修改数据的机会
+- 接下来开始`render`，渲染出**真实**`dom`，然后执行`mounted`钩子函数，这时候可以访问和操作**真实**`dom`
+- 在**数据更改**后，会立即执行`beforeUpdate`，然后`vue`的虚拟`dom`机制会重新构建虚拟`dom`与上一次虚拟`dom`树利用`diff`算法进行对比之后重新渲染，一般不做什么事
+- 当更新完成后，执行`updated`，数据已经更新完成，`dom`也重新`render`完成，可以**操作更新后的虚拟`dom`**
+- 在`beforeDestroy`和`destoryed`在我们离开当前组件或者手动调用`$destroy`方法时被触发，在这两个钩子函数中，可以做一些**善后工作**，如清除计时器等。区别在于`beforeDestroy`是在实例被销毁前调用，`destoryed`是在实例被销毁后调用，这时`Vue`实例所有的指令都已经被解绑了、事件监听器被移除、子实例被销毁
+
+- `activated`钩子函数在被`keep-alive`缓存的组件**激活**时调用
+- `deActivated`钩子函数在被`keep-alive`缓存的组件**停用**时调用
+
+- `errorCaptured`是新增的钩子函数，当**捕获来自子孙组件的错误**时调用。这个钩子接收三个参数：错误对象、发生错误的组件实例和一个包含错误来源信息的字符串。此钩子可以返回`false`以阻止该错误继续向上传播。
 ## vue2.0/3.0双向数据绑定的实现原理
-::: tip 回答技巧
-3.0是在技术论坛看的，2.0是在项目中积累的。通过研究它的原理，知道它在2.0中的实现原理是……，后来尤雨溪在Github上放出3.0版本，我去clone下来，又通过简书掘金进行了解。
-2.0版本使用 Object.defineProperty()。
-3.0版本使用 Proxy 代理。
-::: details 查看代码
+
+2.x版本使用 `Object.defineProperty()`。
+
+3.x版本使用 `Proxy` 代理。
 ``` html
 <body>
     姓名：<span id='spanName'></span>
@@ -113,7 +136,6 @@ sidebarDepth: 2
     </script>
 </body>
 ```
-:::
 
 ## MVC和MVVM的区别
 - MVVM（Model View View-Mode）就是双向数据绑定，视图-数据 双向变化，数据驱动视图（触发set，重新赋值即可），视图修改数据（监听表单元素的onchange或者oninput事件即可），只不过vue里的v-model帮我们实现了onchange事件，在react中需要我们自己写。
@@ -127,26 +149,22 @@ sidebarDepth: 2
     - slot
     - $parent / $children
     - vuex
-<!-- - React
-    - 属性
-    - 发布订阅
-    - React createContext
-    - redux / react-redux / mobix / dva -->
 
-## 请详细说下你对 vue 生命周期的理解？
-- 总共分为 8 个阶段创建前/后，载入前/后，更新前/后，销毁前/后。
-    - 创建前/后： 在 beforeCreate 和 created 阶段，vue 实例的挂载元素 el 还没有，为undefined。
-    - 载入前/后：在 beforeMount 阶段，vue 实例的$el，但还是挂载之前为虚拟的 dom 节点，仍然为undefined。在 mounted 阶段，vue 实例挂载完成，data.message 成功渲染。
-    - 更新前/后：当 data 变化时，会触发 beforeUpdate 和 updated 方法。
-    - 销毁前/后：在执行 destroy 方法后，对 data 的改变不会再触发周期函数，说明此时 vue 实例已经解除了事件监听以及和 dom 的绑定，但是 dom 结构依然存在。
+## v-if 和 v-show
+### 相同点
+两个指令都可以动态控制元素的显示与隐藏
+
+### 不同点
+`v-if`是将元素删除，而`v-show`是给元素添加`display:none`，元素还在
+::: tip 注意
+当在`css`中给一个元素添加了`display:none`后，通过给元素添加指令`v-show=true`无法让元素显示出来。
+:::
 
 ## vue路由懒加载(按需加载)
-::: tip 回答技巧
-之前做开发的时候一直是使用import的方式引入组件，这种方法不利于性能优化。后来使用webpack提供的require进行路由懒加载。
+`import`的方式引入组件，不利于性能优化。我们可以使用`webpack`提供的`require`进行路由懒加载
 ```js
-component: resolve => require(['@/views/order/orderEdit/NewOrder.vue'], resolve);   
+component: resolve => require(['@/views/order/orderEdit/NewOrder.vue'], resolve);
 ```
-::: 
 
 ## 导航守卫
 - 全局守卫
