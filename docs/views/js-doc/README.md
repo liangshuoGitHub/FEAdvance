@@ -201,12 +201,12 @@ obj3.c.x = 1000;
 console.log(obj, obj3);
 // 封装递归函数
 function deepClone(obj) {
-    if (typeof obj === null) return null;
+    if (obj == null) return null;
     if (typeof obj !== 'object') return obj;
     if (obj instanceof RegExp) return new RegExp(obj);
     if (obj instanceof Date) return new Date(obj);
     if (obj instanceof Function) return new Function(obj);
-    // 不直接创建空对象的目的：克隆的结果和之前保持相同的所属类
+    // 不直接创建空对象的目的：克隆的结果和之前保持相同的隐藏类，可以提高性能
     let newObj = new obj.constructor;
     for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
@@ -228,7 +228,8 @@ console.log(obj4,obj);
 - 全局函数无法查看局部函数的内部细节，但是局部函数可以查看其上层函数的内部细节，直到全局。
     
 ## 闭包
-- 闭包的原理就是作用域链，比如函数a内部有个函数b，b可以访问到a里的变量，那么函数b就是闭包。
+- 闭包的**原理**就是作用域链，比如函数a内部有个函数b，b可以访问到a里的变量，那么函数b就是闭包
+- 闭包的**关键**在于外部函数调用完成后，它的**变量对象应该被销毁**，但是闭包的存在使我们依然可以访问外部函数的变量对象。所以`js`垃圾回收机制检测到外部函数的变量对象中还有变量被引用，这个变量对象不会被释放，所以我们要及时解除对闭包的引用，以顺利的进行垃圾回收
 ```js
 function a(){
     let x = 0;
@@ -236,7 +237,10 @@ function a(){
         console.log(x);
     }
 }
-a()();  // 0
+let closure = a();
+closure();  // 0
+closure = null; // 释放对闭包的引用
+
 ```
 ::: details 查看代码
 ``` js
@@ -578,7 +582,7 @@ P.prototype === person.__proto__;  // true
 
 ::: tip 作用域链与原型链的区别
 - 当访问一个变量时，解释器会先在当前作用域查找标识符，如果没有找到就去父作用域找，作用域链顶端是全局对象window，如果window都没有这个变量则报错。
-- 当在对象上访问某属性时，首选i会查找当前对象，如果没有就顺着原型链往上找，原型链顶端是null，如果全程都没找到则返一个undefined，而不是报错。
+- 当在对象上访问某属性时，首先会查找当前对象，如果没有就顺着原型链往上找，原型链顶端是null，如果全程都没找到则返一个undefined，而不是报错。
 :::
 
 ## this对象的理解
@@ -588,7 +592,7 @@ P.prototype === person.__proto__;  // true
     - 在事件中，this指向触发这个事件的对象。
 - 箭头函数中
     - 箭头函数其实是没有this的，箭头函数中的this只取决于包裹箭头函数的第一个普通函数的this，另外对于箭头函数使用bind这类函数无效。
-    - 函数体内的this对象，指的是定义时所在作用域的对象，而不是使用时所在的作用域的对象。
+    - 函数体内的this对象，指的是定义时所在作用域的对象，而不是调用时所在的作用域的对象。
 ```js
 // 普通函数
 function foo(){
@@ -678,9 +682,8 @@ a()()();        //Window
     - 基于http proxy实现跨域请求
         - 开发环境：基于webpack提供的devserver
         - 生产环境：Nginx反向代理
-::: tip 回答技巧
-之前做开发的时候，用jsonp，但是它有一些问题，后来通过了解和学习，开始在项目中引导使用cors和Nginx。
-:::
+
+
 <img src='/images/ajax.png' width='65%' style='margin-left:100px'>
 <img src='/images/jsonp.png' width='65%' style='margin-left:100px'>
 <img src='/images/jsonp1.png' width='65%' style='margin-left:100px'>
@@ -713,20 +716,20 @@ function getQuery(data) {
     for (const i in data) {
         params += `${encodeURIComponent(i)}=${encodeURIComponent(data[i])}&`
     }
-    // 如果参数是空对象就直接返回空字符串
-    params = params.length ? `?${params.substr(0, params.length - 1)}` : '';
+    // 如果参数是空对象就直接返回 ? 用于拼接callback
+    params = params.length ? `?${params}` : '?';
     return params;
 }
 
 // 主体方法
 function jsonp({ url, data, callback }) {
-    const src = url += getQuery(data); // script标签的src
     const con = document.getElementsByTagName('head')[0];
+    let callbackFnName = Symbol(); // 保持回调函数命名唯一性
+    const src = `${url}${getQuery(data)}callback=${callbackFnName}`; // script标签的src
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = src;
     con.appendChild(script);
-    let callbackFnName = Symbol(); // 保持回调函数命名唯一性
 
     return new Promise((resolve, reject) => {
         window[callbackFnName] = res => {
@@ -782,3 +785,52 @@ jsonp({
 - 不会被携带至请求头
 - 所有标签页可以共享数据
 - 除非手动删除，否则数据一直存在
+
+## 性能调优
+- 优先使用`const`、`let`，尽量避免使用`var`
+
+- 减少使用闭包和全局变量，如果用了要及时置为`null`来解除引用，垃圾回收
+
+- 在创建对象时，尽量在构造函数中声明好它们的公共属性与方法，这样它们的实例会共享相同的**隐藏类**，但是动态增删对象实例的属性，会使得它们不再拥有相同的隐藏类，所以在不需要某个属性时，可以置为`null`
+
+- 尽量降低页面重绘和回流的次数
+
+- 在较简单的页面，减少`css`的选择器嵌套层级，因为`CSS`的浏览器渲染机制是从右向左的，如下例：
+``` css
+/* A */
+a {...}
+/* B */
+div a {...}
+/* A 的性能会比 B 更好。 */
+```
+- DNS预解析。DNS解析需要时间，所以可以通过预解析来预先获得域名对应的ip
+``` html
+<link rel="dns-prefetch" href="www.baidu.com">
+```
+- vue 路由懒加载
+``` js
+component: resolve => require(["@/views/index.vue"], resolve);
+```
+- vue 打包开启`gzip`压缩，忽略`vender`文件，减小`app.js`的体积，加快首屏渲染
+
+- 图片懒加载，把所有`img`元素通过`data-src`属性设置为一张`1px`的图片地址，这样只会请求一次。等到元素出现在可视区域时，才设置真正的图片路径。可以根据元素相对顶点的距离`<=`窗口高度+滚动的距离判断元素在视野内
+``` js
+const imgs = document.querySelectorAll('img')
+// 获取可视区域高度
+const viewHeight = window.innerHeight || window.documentElement.clientHeight
+console.log(viewHeight,imgs)
+function loadImg(){
+    for(let i=0; i<imgs.length;i++){
+    console.log(imgs[i].getBoundingClientRect().top)
+    let dis = viewHeight - imgs[i].getBoundingClientRect().top
+    if(dis>0){
+        imgs[i].src = imgs[i].getAttribute('data-src')
+    }
+    }
+}
+loadImg()
+window.addEventListener('scroll',loadImg)
+```
+
+
+- 有良好的编码习惯，做好组件封装和公共样式等，遵循模块化开发

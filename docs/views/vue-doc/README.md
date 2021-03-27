@@ -187,7 +187,7 @@ this.$bus.$on('user', ({name, age})=> {
 
 ### 获取根/父/子组件实例
 
-在绝大多数情况下，最好不要直接触达另一个组件实例内部或手动操作`DOM`，不过有些情况向下也可以。
+在绝大多数情况下，最好不要直接触达另一个组件实例内部或手动操作`DOM`，不过有些情况下也可以。
 
 #### 1. 访问根实例
 可以通过`$root`属性访问组件的根实例，例如在这个根实例中：
@@ -355,7 +355,7 @@ this.$route.parmas.name; // ls
 
 ## key的作用
 
-主要是为了更高效的更新向虚拟DOM
+主要是为了更高效的更新虚拟DOM
 ## vue路由懒加载(按需加载)
 `import`的方式引入组件，不利于性能优化。我们可以使用`webpack`提供的`require`进行路由懒加载
 ```js
@@ -363,59 +363,59 @@ component: resolve => require(['@/views/order/orderEdit/NewOrder.vue'], resolve)
 ```
 
 ## 导航守卫
-- 全局守卫
-    - 全局前置守卫
+### 全局守卫
+#### 1. 全局前置守卫
 
-        你可以使用router.beforeEach 注册一个全局前置守卫：
-    ``` js
-    const router = new VueRouter({ ... });
-    router.beforeEach = ((to, from, next)=>{
-        // to: Route: 即将要进入的目标 路由对象
-        // from: Route: 当前导航正要离开的路由
-        // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。确保要调用 next 方法，否则钩子就不会被 resolved。
-    })
-    ```
-    - 全局解析守卫
-    ``` js
-    router.beforeResolve = ((to, from, next)=>{ });
-    ``` 
-    - 全局后置守卫
-    ``` js
-    router.afterEach = ((to, from)=>{ });
-    ```
+你可以使用router.beforeEach 注册一个全局前置守卫：
+``` js
+const router = new VueRouter({ ... });
+router.beforeEach = ((to, from, next)=>{
+    // to: Route: 即将要进入的目标 路由对象
+    // from: Route: 当前导航正要离开的路由
+    // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。确保要调用 next 方法，否则钩子就不会被 resolved。
+})
+```
+#### 2. 全局解析守卫
+``` js
+router.beforeResolve = ((to, from, next)=>{ });
+``` 
+#### 3. 全局后置守卫
+``` js
+router.afterEach = ((to, from)=>{ });
+```
         
-- 路由独享的守卫 beforeEnter
-    ``` js
-    const router = new VueRouter({
-    routes: [
-            {
-                path: '/foo',
-                component: Foo,
-                beforeEnter: (to, from, next) => {
-                    // ...
-                }
+### 路由独享的守卫
+``` js
+const router = new VueRouter({
+routes: [
+        {
+            path: '/foo',
+            component: Foo,
+            beforeEnter: (to, from, next) => {
+                // ...
             }
-        ]
-    })
-    ```
-- 组件内的守卫
-    ``` js
-    const Foo = {
-        template: `...`,
-        beforeRouteEnter (to, from, next) {
-            // 在渲染该组件的对应路由被确认前调用
-            // 不！能！获取组件实例 `this`
-            // 因为当守卫执行前，组件实例还没被创建
-        },
-        beforeRouteUpdate (to, from, next) {
-            // 在当前路由改变，但是该组件被复用时调用
-            // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-            // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-            // 可以访问组件实例 `this`
-        },
-        beforeRouteLeave (to, from, next) {
-            // 导航离开该组件的对应路由时调用
-            // 可以访问组件实例 `this`
         }
+    ]
+})
+```
+### 组件内的守卫
+``` js
+const Foo = {
+    template: `...`,
+    beforeRouteEnter (to, from, next) {
+        // 在渲染该组件的对应路由被确认前调用
+        // 不！能！获取组件实例 `this`
+        // 因为当守卫执行前，组件实例还没被创建
+    },
+    beforeRouteUpdate (to, from, next) {
+        // 在当前路由改变，但是该组件被复用时调用
+        // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+        // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+        // 可以访问组件实例 `this`
+    },
+    beforeRouteLeave (to, from, next) {
+        // 导航离开该组件的对应路由时调用
+        // 可以访问组件实例 `this`
     }
-    ```
+}
+```
