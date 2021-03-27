@@ -233,3 +233,22 @@ const arr = [1,2,3,4,5];
 const sum = arr.reduce((a,b)=>a+b);
 console.log(sum); // 15
 ```
+
+## 输出一个数组中出现次数对多的项和出现的次数
+``` js
+const arr = [1,1,1,2,2,2,2,2,2,4,3,4];
+let obj = {};
+arr.forEach(item=>{
+    obj[item] = obj[item] ? obj[item]+=1 : 1;
+})
+console.log(obj);
+let maxNum = 0;
+let maxItem = "";
+for(const key in obj){
+    if(obj[key] > maxNum){
+        maxNum = obj[key];
+        maxItem = key;
+    }
+}
+console.log(maxItem, maxNum); // 2 6
+```

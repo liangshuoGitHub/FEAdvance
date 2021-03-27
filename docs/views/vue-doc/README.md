@@ -100,6 +100,7 @@ sidebarDepth: 3
                     if (target[prop] === value) return;
                     target[prop] = value;
                     observer(target);
+                    return true; // 使用proxy要在set后return true 否则控制台报错
                 }
             })
 
@@ -123,6 +124,7 @@ sidebarDepth: 3
                     if (target[prop] === value) return;
                     target[prop] = value;
                     observer(obj);
+                    return true; // 使用proxy要在set后return true 否则控制台报错
                 }
             })
             function observer(obj) {

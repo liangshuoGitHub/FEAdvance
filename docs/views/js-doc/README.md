@@ -803,7 +803,7 @@ a {...}
 div a {...}
 /* A 的性能会比 B 更好。 */
 ```
-- DNS预解析。DNS解析需要时间，所以可以通过预解析来预先获得域名对应的ip
+- DNS预解析。DNS解析需要时间，所以可以通过预解析来预先获得域名对应的ip，可以加快首屏加载速度
 ``` html
 <link rel="dns-prefetch" href="www.baidu.com">
 ```
