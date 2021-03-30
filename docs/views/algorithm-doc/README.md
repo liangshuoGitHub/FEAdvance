@@ -236,7 +236,7 @@ console.log(sum); // 15
 
 ## 输出一个数组中出现次数对多的项和出现的次数
 ``` js
-const arr = [1,1,1,2,2,2,2,2,2,4,3,4];
+const arr = [1,1,1,2,2,2,2,2,2,4,3,4,3,3,3,3,3];
 let obj = {};
 arr.forEach(item=>{
     obj[item] = obj[item] ? obj[item]+=1 : 1;
@@ -250,5 +250,13 @@ for(const key in obj){
         maxItem = key;
     }
 }
+// 如果有 数组项出现的次数一样多的情况
+let newArr = [];
+for(const key in obj){
+    of(obj[key] === maxNum){
+        newArr.push(key);
+    }
+}
+console.log(newArr); // [2, 3]
 console.log(maxItem, maxNum); // 2 6
 ```
