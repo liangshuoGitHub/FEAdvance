@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CSS | 前端进阶之路</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    <link rel="icon" href="/images/icons/groot.png">
+    <meta name="description" content="Just Play Around">
+    <link rel="preload" href="/assets/css/0.styles.c122cf0b.css" as="style"><link rel="preload" href="/assets/js/app.4c218f8c.js" as="script"><link rel="preload" href="/assets/js/2.75c81597.js" as="script"><link rel="preload" href="/assets/js/8.b2634d1b.js" as="script"><link rel="prefetch" href="/assets/js/10.af367a61.js"><link rel="prefetch" href="/assets/js/11.e4e4aeb2.js"><link rel="prefetch" href="/assets/js/12.fd606aff.js"><link rel="prefetch" href="/assets/js/13.71f93a78.js"><link rel="prefetch" href="/assets/js/14.001ce991.js"><link rel="prefetch" href="/assets/js/15.9050ef51.js"><link rel="prefetch" href="/assets/js/16.a7afae3c.js"><link rel="prefetch" href="/assets/js/17.f991c54c.js"><link rel="prefetch" href="/assets/js/18.139ea8de.js"><link rel="prefetch" href="/assets/js/19.83f3b564.js"><link rel="prefetch" href="/assets/js/20.947f8cc0.js"><link rel="prefetch" href="/assets/js/21.5396f532.js"><link rel="prefetch" href="/assets/js/22.38906f33.js"><link rel="prefetch" href="/assets/js/23.c26aa518.js"><link rel="prefetch" href="/assets/js/24.a47b654c.js"><link rel="prefetch" href="/assets/js/25.32f4eaa6.js"><link rel="prefetch" href="/assets/js/26.4611b5d7.js"><link rel="prefetch" href="/assets/js/27.03406acd.js"><link rel="prefetch" href="/assets/js/28.70820ecd.js"><link rel="prefetch" href="/assets/js/29.36931166.js"><link rel="prefetch" href="/assets/js/3.f9fad6c2.js"><link rel="prefetch" href="/assets/js/30.34ca59b5.js"><link rel="prefetch" href="/assets/js/4.50ebe874.js"><link rel="prefetch" href="/assets/js/5.1c5dc32c.js"><link rel="prefetch" href="/assets/js/6.2201d854.js"><link rel="prefetch" href="/assets/js/7.901230e2.js"><link rel="prefetch" href="/assets/js/9.dba32540.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c122cf0b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/images/icons/ironMan.png" alt="前端进阶之路" class="logo"> <span class="site-name can-hide">前端进阶之路</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/test/" class="nav-link">
+  Test
+</a></div><div class="nav-item"><a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Baidu
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/test/" class="nav-link">
+  Test
+</a></div><div class="nav-item"><a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Baidu
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/views/html-doc/" class="sidebar-link">HTML</a></li><li><a href="/views/css-doc/" aria-current="page" class="active sidebar-link">CSS</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/views/css-doc/#css选择器优先级" class="sidebar-link">css选择器优先级</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#伪类和伪元素的区别" class="sidebar-link">伪类和伪元素的区别</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/views/css-doc/#伪类" class="sidebar-link">伪类</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#伪元素" class="sidebar-link">伪元素</a></li></ul></li><li class="sidebar-sub-header"><a href="/views/css-doc/#less和sass的用法" class="sidebar-link">less和sass的用法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/views/css-doc/#less" class="sidebar-link">less</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#sass" class="sidebar-link">sass</a></li></ul></li><li class="sidebar-sub-header"><a href="/views/css-doc/#css3的新特性" class="sidebar-link">CSS3的新特性</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#盒子水平垂直居中的五大方案" class="sidebar-link">盒子水平垂直居中的五大方案</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#盒子模型" class="sidebar-link">盒子模型</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#掌握几大经典布局方案" class="sidebar-link">掌握几大经典布局方案</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#移动端响应式布局的方案" class="sidebar-link">移动端响应式布局的方案</a></li><li class="sidebar-sub-header"><a href="/views/css-doc/#性能比较" class="sidebar-link">性能比较</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/views/css-doc/#重绘和回流" class="sidebar-link">重绘和回流</a></li></ul></li></ul></li><li><a href="/views/js-doc/" class="sidebar-link">JavaScript</a></li><li><a href="/views/vue-doc/" class="sidebar-link">Vue</a></li><li><a href="/views/algorithm-doc/" class="sidebar-link">Algorithm</a></li><li><section class="sidebar-group depth-0"><a href="/views/professionalJs4th-doc/" class="sidebar-heading clickable"><span>ProfessionalJavaScript4th</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group is-sub-group depth-1"><a href="/views/professionalJs4th-doc/basic/" class="sidebar-heading clickable open"><span>基本知识</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/views/professionalJs4th-doc/basic/chapter-1.html" class="sidebar-link">第1章 什么是JavaScript</a></li><li><a href="/views/professionalJs4th-doc/basic/chapter-2.html" class="sidebar-link">第2章 HTML中的JavaScript</a></li><li><a href="/views/professionalJs4th-doc/basic/chapter-3.html" class="sidebar-link">第3章 语言基础</a></li><li><a href="/views/professionalJs4th-doc/basic/chapter-4.html" class="sidebar-link">第4章 变量、作用域与内存</a></li><li><a href="/views/professionalJs4th-doc/basic/chapter-5.html" class="sidebar-link">第5章 基本引用类型</a></li><li><a href="/views/professionalJs4th-doc/basic/chapter-6.html" class="sidebar-link">第6章 集合引用类型</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><a href="/views/professionalJs4th-doc/BOMAndDOM/" class="sidebar-heading clickable"><span>BOM和DOM</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-12.html" class="sidebar-link">第12章 BOM</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-13.html" class="sidebar-link">第13章 客户端检测</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-14.html" class="sidebar-link">第14章 DOM</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-15.html" class="sidebar-link">第15章 DOM扩展</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-16.html" class="sidebar-link">第16章 DOM2和DOM3</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-17.html" class="sidebar-link">第17章 事件</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-18.html" class="sidebar-link">第18章 动画与canvas图形</a></li><li><a href="/views/professionalJs4th-doc/BOMAndDOM/chapter-19.html" class="sidebar-link">第19章 表单脚本</a></li></ul></section></li><li><a href="/views/professionalJs4th-doc/advance/" class="sidebar-link">进阶内容</a></li><li><a href="/views/professionalJs4th-doc/API/" class="sidebar-link">JavaScriptAPI</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="css"><a href="#css" class="header-anchor">#</a> CSS <img src="/images/icons/hulk.png" width="50" style="margin-top:-15px;"></h1> <h2 id="css选择器优先级"><a href="#css选择器优先级" class="header-anchor">#</a> css选择器优先级</h2> <p><code>important!</code> &gt; ID选择器 &gt; 类选择器 = 属性选择器 = 伪类选择器 &gt; 标签选择器 = 伪元素选择器</p> <h2 id="伪类和伪元素的区别"><a href="#伪类和伪元素的区别" class="header-anchor">#</a> 伪类和伪元素的区别</h2> <p>伪类和伪元素都是用来添加选择器的一些特殊效果。</p> <h3 id="伪类"><a href="#伪类" class="header-anchor">#</a> 伪类</h3> <p>伪类分为<strong>状态伪类和结构性伪类</strong>两种。</p> <h4 id="状态伪类"><a href="#状态伪类" class="header-anchor">#</a> 状态伪类</h4> <p>状态伪类指的是在与用户交互的过程中，元素的<strong>状态是动态变化</strong>的。常见的状态伪类有：</p> <ul><li><code>:link</code> 应用于<strong>未被访问</strong>过的链接</li> <li><code>:hover</code> 应用于鼠标<strong>悬停</strong>到的元素</li> <li><code>:active</code> 应用于<strong>被激活</strong>的元素</li> <li><code>:visited</code> 应用于<strong>被访问过</strong>的链接，与<code>:link</code>互斥</li> <li><code>:focus</code> 应用于<strong>获得焦点</strong>的元素</li></ul> <h4 id="结构性伪类"><a href="#结构性伪类" class="header-anchor">#</a> 结构性伪类</h4> <p>结构性伪类是CSS3新增的选择器，利用dom树进行元素过滤，能减少<code>class</code>和<code>id</code>的定义，使文挡结构更简洁。常见的结构性伪类有：</p> <ul><li><code>p:first-child</code> 匹配第一个p元素</li> <li><code>p:last-child</code>  匹配最后一个p元素</li> <li><code>p:nth-child(n)</code> 匹配第几个或者多个p元素（p:nth-child(2n+0)匹配下标是2的倍数的所有p元素）</li> <li><code>p:nth-last-child-(n)</code> 与上一个一致，只不过是从最后一个元素开始查找</li> <li><code>p:nth-of-type(n)</code> 选择指定的元素 (nth-of-type(2)匹配属于其父元素的第二个 p 元素的每个 p)</li> <li><code>p:nth-last-of-type(n)</code> 与上一个一致，只不过是从最后一个元素开始查找</li> <li><code>p:first-of-type</code> 等同于<code>p:nth-of-type(1)</code></li> <li><code>p:last-of-type</code> 等同于<code>p:nth-last-of-type(1)</code></li> <li><code>p:only-child</code> 匹配属于其父元素的唯一子元素的每个p元素</li> <li><code>p:empty</code> 匹配空的p元素</li></ul> <h3 id="伪元素"><a href="#伪元素" class="header-anchor">#</a> 伪元素</h3> <p>伪元素控制的内容和元素相同，但是它本身是<strong>基于元素的抽象</strong>，<strong>并不存在于文档结构中</strong>。常用的伪元素有：</p> <ul><li><code>::before</code> 在元素内容的最前面添加内容</li> <li><code>::after</code>  在元素内容的最后添加内容</li> <li><code>::first-letter</code>  选择元素文本的第一个字/字母</li> <li><code>::first-line</code>    选择元素文本的第一行</li></ul> <h2 id="less和sass的用法"><a href="#less和sass的用法" class="header-anchor">#</a> less和sass的用法</h2> <h3 id="less"><a href="#less" class="header-anchor">#</a> less</h3> <h4 id="_1-变量"><a href="#_1-变量" class="header-anchor">#</a> 1. 变量</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token atrule"><span class="token rule">@baseColor</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span></span>
+<span class="token selector">.box</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token atrule"><span class="token rule">@baseColor</span><span class="token punctuation">;</span></span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h4 id="_2-参数-动态数据"><a href="#_2-参数-动态数据" class="header-anchor">#</a> 2. 参数 动态数据</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token function">testRaduis</span><span class="token punctuation">(</span><span class="token parameter">@bl<span class="token operator">:</span> <span class="token number">5</span>px</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    border<span class="token operator">-</span>radius<span class="token operator">:</span> @bl<span class="token punctuation">;</span>
+    <span class="token operator">-</span>webkit<span class="token operator">-</span>border<span class="token operator">-</span>radius<span class="token operator">:</span> @bl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">.</span>borderR5 <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>testRadius<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">.</span>borderR10 <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token function">testRadius</span><span class="token punctuation">(</span><span class="token number">10</span>px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 结果 border-radius: 10px;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h4 id="_3-嵌套"><a href="#_3-嵌套" class="header-anchor">#</a> 3. 嵌套</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">div</span> <span class="token punctuation">{</span>
+    <span class="token selector">span</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="_4-函数运算符"><a href="#_4-函数运算符" class="header-anchor">#</a> 4. 函数运算符</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code>@baseColor<span class="token operator">:</span> #<span class="token number">111</span><span class="token punctuation">;</span>
+span <span class="token punctuation">{</span>
+    color<span class="token operator">:</span> <span class="token punctuation">(</span>@baseColor <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// #333</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="sass"><a href="#sass" class="header-anchor">#</a> sass</h3> <p>在<code>sass</code>中，变量用<code>$</code>左前缀，声明或者其他关键字、语句用<code>@</code>做前缀。</p> <h4 id="_1-变量-开头"><a href="#_1-变量-开头" class="header-anchor">#</a> 1. 变量 $开头</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code>$<span class="token property">baseColor</span><span class="token punctuation">:</span> #333<span class="token selector">;
+div</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> $baseColor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h4 id="_2-嵌套"><a href="#_2-嵌套" class="header-anchor">#</a> 2. 嵌套</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">div</span> <span class="token punctuation">{</span>
+    <span class="token selector">span</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="_3-计算"><a href="#_3-计算" class="header-anchor">#</a> 3. 计算</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">div</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 10px + 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="_4-继承"><a href="#_4-继承" class="header-anchor">#</a> 4. 继承</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">.class1</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.class2</span> <span class="token punctuation">{</span>
+    <span class="token atrule"><span class="token rule">@extend</span> .class1<span class="token punctuation">;</span></span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h4 id="_5-混入"><a href="#_5-混入" class="header-anchor">#</a> 5. 混入</h4> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token atrule"><span class="token rule">@mixin</span> left</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@mixin</span> <span class="token function">right</span><span class="token punctuation">(</span>$<span class="token property">bl</span><span class="token punctuation">:</span> 5px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+    <span class="token property">margin-right</span><span class="token punctuation">:</span> $bl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.con</span><span class="token punctuation">{</span>
+    <span class="token atrule"><span class="token rule">@include</span> left<span class="token punctuation">;</span></span>
+    <span class="token atrule"><span class="token rule">@include</span> <span class="token function">right</span><span class="token punctuation">(</span>20px<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h4 id="_6-导入css文件"><a href="#_6-导入css文件" class="header-anchor">#</a> 6. 导入css文件</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code>@<span class="token keyword">import</span> <span class="token string">'../css/index.css'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="_7-if-else"><a href="#_7-if-else" class="header-anchor">#</a> 7. if...else</h4> <p>下例结合使用<code>@mixin</code>和<code>@if...@else</code>演示不同方向的三角形的创建：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code>@mixin <span class="token function">sjx</span><span class="token punctuation">(</span><span class="token parameter">$fx<span class="token operator">:</span> left<span class="token punctuation">,</span> $size<span class="token operator">:</span> <span class="token number">100</span>px<span class="token punctuation">,</span> $color<span class="token operator">:</span> red</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    @<span class="token keyword">if</span><span class="token punctuation">(</span>$fx <span class="token operator">==</span> top<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        border<span class="token operator">-</span>color<span class="token operator">:</span> transparent transparent $color transparent<span class="token punctuation">;</span>
+        border<span class="token operator">-</span>style<span class="token operator">:</span> dashed dashed solid dashed<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    @<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>$fx <span class="token operator">==</span> bottom<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        border<span class="token operator">-</span>color<span class="token operator">:</span> $color transparent transparent transparent<span class="token punctuation">;</span>
+        border<span class="token operator">-</span>style<span class="token operator">:</span> solid dashed dashed dashed<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    @<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>$fx <span class="token operator">==</span> left<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        border<span class="token operator">-</span>color<span class="token operator">:</span> transparent $color transparent transparent<span class="token punctuation">;</span>
+        border<span class="token operator">-</span>style<span class="token operator">:</span> dashed solid dashed dashed<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    #<span class="token keyword">else</span> <span class="token punctuation">{</span>
+        border<span class="token operator">-</span>color<span class="token operator">:</span> transparent transparent transparent $color<span class="token punctuation">;</span>
+        border<span class="token operator">-</span>style<span class="token operator">:</span> dashed dashed dashed solid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 调用mixin 创建一个箭头朝下的三角形</span>
+<span class="token punctuation">.</span>demo <span class="token punctuation">{</span>
+    @include <span class="token function">sjx</span><span class="token punctuation">(</span>bottom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h4 id="_8-字符串拼接"><a href="#_8-字符串拼接" class="header-anchor">#</a> 8. 字符串拼接</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code>$aside<span class="token operator">:</span> left<span class="token punctuation">;</span>
+div<span class="token punctuation">{</span>
+    border<span class="token operator">-</span>#<span class="token punctuation">{</span>$aside<span class="token punctuation">}</span><span class="token operator">:</span> <span class="token number">1</span>px solid red<span class="token punctuation">;</span>
+    <span class="token comment">// 结果是border-left</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="_9-循环"><a href="#_9-循环" class="header-anchor">#</a> 9. 循环</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// for 循环</span>
+@<span class="token keyword">for</span> $i <span class="token keyword">from</span> <span class="token number">1</span> to <span class="token number">10</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>div#<span class="token punctuation">{</span>$i<span class="token punctuation">}</span> <span class="token punctuation">{</span>
+        width<span class="token operator">:</span> #<span class="token punctuation">{</span>$i<span class="token punctuation">}</span>px<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// while 循环</span>
+$i<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">;</span>
+@<span class="token keyword">while</span> $i <span class="token operator">&lt;</span> <span class="token number">8</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>div#<span class="token punctuation">{</span>$i<span class="token punctuation">}</span> <span class="token punctuation">{</span>
+        width<span class="token operator">:</span> <span class="token number">10</span>px <span class="token operator">*</span> $i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    $i<span class="token operator">:</span> $i<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h4 id="_10-自定义函数"><a href="#_10-自定义函数" class="header-anchor">#</a> 10. 自定义函数</h4> <div class="language-js line-numbers-mode"><pre class="language-js"><code>@<span class="token keyword">function</span> <span class="token function">dubble</span><span class="token punctuation">(</span><span class="token parameter">$n</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    @<span class="token keyword">return</span> $n <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+#sidebar <span class="token punctuation">{</span>
+    width<span class="token operator">:</span> <span class="token function">double</span><span class="token punctuation">(</span><span class="token number">5</span>px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="css3的新特性"><a href="#css3的新特性" class="header-anchor">#</a> CSS3的新特性</h2> <ul><li><p>结构性伪类选择器</p> <ul><li><code>p:first-child {}</code> 匹配父元素中第一个p元素</li> <li><code>p:last-child {}</code> 匹配父元素中最后一个p元素</li> <li><code>p:nth-child(n) {}</code> 匹配父元素中的第n个子元素p</li> <li><code>p:empty {}</code> 匹配没有任何子元素（包括text节点）的元素p</li></ul></li> <li><p>弹性盒子</p> <ul><li><code>display: flex</code></li></ul> <p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener noreferrer">flex布局教程-阮一峰<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></li> <li><p>盒子模型（盒子大小）</p> <ul><li>box-sizing [标准：content-box；怪异：border-box]</li></ul></li> <li><p>边框</p> <ul><li>图片：border-image: url(&quot;&quot;);</li> <li>圆角：border-radius: 5px;</li> <li>阴影：box-shadow;</li></ul></li> <li><p>背景</p> <ul><li><p>图片：background-image</p></li> <li><p>尺寸：background-size: ~px / ~% / cover / contain</p></li> <li><p>定位背景图像：background-position：top left / x% y% / xpx ypx</p></li> <li><p>设置background-position 计算的参考位置：background-origin：</p> <ul><li>border-box：从border区域开始显示背景。</li> <li>padding-box：从padding区域开始显示背景。</li> <li>content-box：从content区域开  始显示背景。</li></ul> <img src="/images/background-origin.gif" style="margin-top:10px;"></li> <li><p>裁切背景：background-clip</p> <ul><li>no-clip：从border区域向外裁剪背景。</li> <li>border-box：从border区域向外裁剪背景。</li> <li>padding-box：从padding区域向外裁剪背景。</li> <li>content-box：从content区域向外裁剪背景。</li></ul></li> <li><p>渐变背景</p> <ul><li>线性渐变：background-image: linear gradient( to bottom right, black, white );</li> <li>径向渐变：background-image：radial gradient( circle, red, yellow, green );circle 表示圆形，ellipse 表示椭圆形。默认值是 ellipse</li></ul></li> <li><p>可以设置多重背景，多个属性值之间用逗号隔开</p></li></ul></li></ul> <div class="language-css line-numbers-mode"><pre class="language-css"><code>    <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>https://static.runoob.com/images/mix/54cf2365000140e600740095.jpg<span class="token punctuation">)</span></span><span class="token punctuation">,</span>
+                <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>https://static.runoob.com/images/mix/54cf238a0001728d00740095.jpg<span class="token punctuation">)</span></span><span class="token punctuation">,</span>
+                <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>https://static.runoob.com/images/mix/54cf23b60001fd9700740096.jpg<span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+    <span class="token property">background-position</span><span class="token punctuation">:</span> left top<span class="token punctuation">,</span> 100px 0<span class="token punctuation">,</span> 200px 0<span class="token punctuation">;</span>
+    <span class="token property">background-repeat</span><span class="token punctuation">:</span> no-repeat<span class="token punctuation">,</span> no-repeat<span class="token punctuation">,</span> no-repeat<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ul><li><p>文本效果</p> <ul><li>阴影
+<ul><li>box-shadow</li> <li>text-shadow</li> <li>顺序：水平阴影-&gt;垂直阴影-&gt;模糊-&gt;阴影尺寸-&gt;颜色-&gt;外阴影转到内阴影</li> <li>::after &amp; ::before伪元素也可以添加阴影</li></ul></li> <li>显示溢出内容 text-overflow
+<ul><li>clip 裁剪</li> <li>ellipsis 显示省略号</li></ul></li> <li>当前行超过指定容器的边界时是否断开换行 word-wrap
+<ul><li>normal</li> <li>break-word：内容将在边界内换行。如果需要，词内换行（word-break）也会发生。</li></ul></li> <li>单词拆分换行规则 word-break
+<ul><li>break-all</li> <li>keep-all</li></ul></li></ul></li> <li><p>动画</p> <ul><li>属性
+<ul><li>animation</li> <li>@keyframes</li></ul></li> <li>例：把 &quot;myfirst&quot; 动画捆绑到 div 元素，时长：5 秒</li></ul></li></ul> <div class="language-css line-numbers-mode"><pre class="language-css"><code>    <span class="token selector">div</span><span class="token punctuation">{</span>
+        <span class="token property">animation</span><span class="token punctuation">:</span> myfirst 5s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token atrule"><span class="token rule">@keyframes</span> myfirst</span><span class="token punctuation">{</span>
+        <span class="token selector">from</span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token selector">to</span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> black <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token atrule"><span class="token rule">@keyframes</span> myfirst</span><span class="token punctuation">{</span>
+        <span class="token selector">0%</span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token selector">25%</span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> black<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token selector">100%</span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><ul><li>媒体查询 @media
+<ul><li>媒体类型
+<ul><li>all 所有</li> <li>print 打印机</li> <li>screen 电脑手机平板</li> <li>speech 屏幕阅读器</li></ul></li> <li>参数
+<ul><li>width:浏览器可视宽度。</li> <li>height:浏览器可视高度。</li> <li>device-width:设备屏幕的宽度。</li> <li>device-height:设备屏幕的高度。</li> <li>orientation:检测设备目前处于横向还是纵向状态。</li> <li>aspect-ratio:检测浏览器可视宽度和高度的比例。(例如：aspect-ratio:16/9)</li> <li>device-aspect-ratio:检测设备的宽度和高度的比例。</li></ul></li> <li>CSS2已经用link标签的形式支持了media，只不过会增加http请求</li></ul></li></ul> <div class="language-css line-numbers-mode"><pre class="language-css"><code>    <span class="token comment">/* css2 */</span>
+    &lt;link rel=<span class="token string">&quot;stylesheet&quot;</span> type=<span class="token string">&quot;text/css&quot;</span> media=<span class="token string">&quot;screen and (max-width:960px)&quot;</span> href=<span class="token string">&quot;style.css&quot;</span>&gt;
+    <span class="token comment">/* css3 */</span>
+    <span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span>960px<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span>1200px<span class="token punctuation">)</span></span><span class="token punctuation">{</span>
+        <span class="token selector">body</span><span class="token punctuation">{</span><span class="token property">background</span><span class="token punctuation">:</span>yellow<span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="盒子水平垂直居中的五大方案"><a href="#盒子水平垂直居中的五大方案" class="header-anchor">#</a> 盒子水平垂直居中的五大方案</h2> <p>1、position + margin</p> <p>2、position + transform: translate(50%, 50%)</p> <p>3、display: flex</p> <p>4、js + position 动态获取box和其父元素的宽高</p> <p>5、display: table-cell</p> <details class="custom-block details"><summary>查看代码</summary> <div class="language-css line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-css"><code>
+<span class="token selector">html,body</span><span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+    <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token atrule"><span class="token rule">@width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span></span>
+<span class="token selector">.box_common()</span><span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token atrule"><span class="token rule">@width</span><span class="token punctuation">;</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token atrule"><span class="token rule">@width</span><span class="token punctuation">;</span></span>
+    <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #333<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.box,.box1</span><span class="token punctuation">{</span>
+    .box_<span class="token function">common</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    // <span class="token property">box-sizing</span><span class="token punctuation">:</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* --- 方法一 基于定位 --- */</span>
+
+<span class="token comment">/* css3 兼容性不好  不设置宽高也可以，会根据内容撑开 */</span>
+<span class="token selector">body</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.box</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-50%<span class="token punctuation">,</span> -50%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* 需要知道宽高 */</span>
+<span class="token selector">.box</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> -50px 0 0 -50px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* 不需要知道宽高，但是需要有，否则宽高会变为100% */</span>
+<span class="token selector">.box</span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* --- 方法二 css3盒子模型 --- */</span>
+<span class="token selector">// body</span><span class="token punctuation">{</span>
+//     <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+//     <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+//     <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+// <span class="token punctuation">}</span>
+
+<span class="token comment">/* --- 方法三 table-cell --- */</span>
+<span class="token selector">// display:table-cell 是适用于文本的，所以要把box转化为inline或者inline-block，弊端为父元素必须有固定宽高
+.box3</span><span class="token punctuation">{</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> tan<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span>
+    <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token selector">;
+    &gt;div</span><span class="token punctuation">{</span>
+        <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+        .box_<span class="token function">common</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br></div></div><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 方法 四： js + position</span>
+<span class="token comment">// id值box2可以直接拿来用</span>
+<span class="token comment">// clientWidth 计算公式 width+左右padding-水平滚动条宽度</span>
+<span class="token comment">// clientHeight 计算公式 height+上下padding-垂直滚动条宽度</span>
+<span class="token comment">// offsetWidth 计算公式 width+左右padding+border</span>
+<span class="token comment">// offsetHeight 计算公式 height+上下padding+border</span>
+box2<span class="token punctuation">.</span>style<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token string">'absolute'</span><span class="token punctuation">;</span>
+box2<span class="token punctuation">.</span>style<span class="token punctuation">.</span>width <span class="token operator">=</span> <span class="token string">'100px'</span><span class="token punctuation">;</span>
+box2<span class="token punctuation">.</span>style<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token string">'100px'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token constant">HTML</span> <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">,</span>
+    winW <span class="token operator">=</span> <span class="token constant">HTML</span><span class="token punctuation">.</span>clientWidth<span class="token punctuation">,</span>
+    winH <span class="token operator">=</span> <span class="token constant">HTML</span><span class="token punctuation">.</span>clientHeight<span class="token punctuation">,</span>
+    box2W <span class="token operator">=</span> box2<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">,</span>
+    box2H <span class="token operator">=</span> box2<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span>
+
+box2<span class="token punctuation">.</span>style<span class="token punctuation">.</span>border <span class="token operator">=</span> <span class="token string">'1px solid #333'</span><span class="token punctuation">;</span>
+box2<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token punctuation">(</span>winW <span class="token operator">-</span> box2W<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+box2<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token punctuation">(</span>winH <span class="token operator">-</span> box2H<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div></details> <h2 id="盒子模型"><a href="#盒子模型" class="header-anchor">#</a> 盒子模型</h2> <p>1、标准盒子模型(box-sizing: content-box)</p> <div class="language- extra-class"><pre><code>标准盒子模型中width和height代表的是内容区域的宽高，并不代表盒子的大小，盒子大小要通过 width/height + padding + border 取得。
+</code></pre></div><p>2、怪异盒子模型(box-sizing: border-box)</p> <div class="language- extra-class"><pre><code>width和height代表的是盒子的宽高，而不是内容的宽高
+</code></pre></div><p>3、弹性盒子(display:flex)</p> <p>4、多列布局(基本不用)</p> <img src="/images/box-model.png" width="50%" style="margin-left:100px;"> <div class="custom-block tip"><p class="custom-block-title">回答技巧</p> <p>分析痛点+看源码</p> <p>盒子模型分为标准盒子模型和怪异盒子模型（IE盒子模型），还有就是flex弹性盒子模型以及column多列盒子模型。在标准盒子模型中，宽高代表内容所占尺寸，并不包括padding和border，所以当我们设置了width和height之后再加border、padding盒子会变大，所以每改一次padding、border就要手动去改width、height，很麻烦。</p> <p>后来css3给我们提供了box-sizing: border-box，也就是怪异盒子模型，能让我们控制使用IE盒子模型了。它的好处就是宽高指的是盒子的宽高，而不是内容大小，在我们调整padding和border，它会通过缩放内容来保证盒子的大小不变，所以现在在写项目时常用border-box，在我看elementUI组件源码时，它们也在使用border-box，所以我觉得这种写法还是不错的。</p> <p>在做移动端响应式开发时，我发现布局也可以用css3为我们提供的flex弹性盒子模型实现布局，</p></div> <h2 id="掌握几大经典布局方案"><a href="#掌握几大经典布局方案" class="header-anchor">#</a> 掌握几大经典布局方案</h2> <p>1、圣杯布局：浮动和负margin</p> <p>2、双飞翼布局</p> <p>3、左右固定，中间自适应(flex 布局； position)</p> <details class="custom-block details"><summary>查看代码</summary> <div class="language-html line-numbers-mode"><pre class="language-html"><code><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>width=device-width, initial-scale=1.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>布局<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+        <span class="token selector">html,
+        body</span> <span class="token punctuation">{</span>
+            <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/* 圣杯布局 */</span>
+        <span class="token selector">.container</span> <span class="token punctuation">{</span>
+            <span class="token comment">/* padding: 0 200px; */</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.container .left,
+        .right</span> <span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+            <span class="token property">min-height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightcoral<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.container .center</span> <span class="token punctuation">{</span>
+            <span class="token comment">/* width: 100%; */</span>
+            <span class="token comment">/* 表达式性能不好 */</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>100% - 400px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightcyan<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.container .left,
+        .container .right,
+        .container .center</span> <span class="token punctuation">{</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.container .left</span> <span class="token punctuation">{</span>
+            <span class="token comment">/* margin-left: -200px; */</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.container .right</span> <span class="token punctuation">{</span>
+            <span class="token comment">/* margin-right: -200px; */</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/* 双飞翼布局 */</span>
+        <span class="token selector">.c2</span> <span class="token punctuation">{</span>
+            <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">padding</span><span class="token punctuation">:</span> 0 200px<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.c2 .center</span> <span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightpink<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.left,
+        .right</span> <span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightslategray<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector">.left,
+        .right,
+        .c2</span> <span class="token punctuation">{</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.left</span><span class="token punctuation">{</span>
+            <span class="token property">margin-left</span><span class="token punctuation">:</span> -100%<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.right</span><span class="token punctuation">{</span>
+            <span class="token property">margin-left</span><span class="token punctuation">:</span> -200px<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/* flex 布局 */</span>
+        <span class="token selector">.c3</span><span class="token punctuation">{</span>
+            <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+            <span class="token property">justify-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.c3 .left,.right</span><span class="token punctuation">{</span>
+            <span class="token property">flex</span><span class="token punctuation">:</span> 0 0 200px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightsteelblue<span class="token punctuation">;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.c3 .center</span><span class="token punctuation">{</span>
+            <span class="token property">flex</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightyellow<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/* position */</span>
+        <span class="token selector">.c4</span><span class="token punctuation">{</span>
+            <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.c4 .left,.right</span><span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> lightyellow<span class="token punctuation">;</span>
+            <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.c4 .center</span><span class="token punctuation">{</span>
+            <span class="token property">margin</span><span class="token punctuation">:</span> 0 200px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">background</span><span class="token punctuation">:</span> mediumaquamarine<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector">.c4 .right</span><span class="token punctuation">{</span>
+            <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+            <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 圣杯布局 --&gt;</span>
+    <span class="token comment">&lt;!-- &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;center&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt; --&gt;</span>
+
+    <span class="token comment">&lt;!-- 双飞翼布局 --&gt;</span>
+    <span class="token comment">&lt;!-- &lt;div class=&quot;c2&quot;&gt;
+        &lt;div class=&quot;center&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt; --&gt;</span>
+
+    <span class="token comment">&lt;!-- flex 布局 --&gt;</span>
+    <span class="token comment">&lt;!-- &lt;div class=&quot;c3&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;
+        &lt;div class=&quot;center&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;
+    &lt;/div&gt; --&gt;</span>
+
+    <span class="token comment">&lt;!-- position --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>c4<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>left<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>left<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>center<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>center<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>right<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br></div></div></details> <h2 id="移动端响应式布局的方案"><a href="#移动端响应式布局的方案" class="header-anchor">#</a> 移动端响应式布局的方案</h2> <p>1、media (pc&amp;h5用一套页面的情况，主流)</p> <p>2、rem （，即百分比，适用于纯移动端页面，主流）</p> <p>3、flex</p> <p>4、vw vh (把视口的宽高分为100份，1vh/vw为一份，即 1%)</p> <h2 id="性能比较"><a href="#性能比较" class="header-anchor">#</a> 性能比较</h2> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token comment">/* A  */</span>
+<span class="token selector">a</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+
+<span class="token comment">/* B */</span>
+<span class="token selector">.con a</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>A 的性能会更好，因为CSS的浏览器渲染机制是从右向左查询，B会先找所有a，再找con下的所有a。</p> <h3 id="重绘和回流"><a href="#重绘和回流" class="header-anchor">#</a> 重绘和回流</h3> <h4 id="_1-重绘-repaint"><a href="#_1-重绘-repaint" class="header-anchor">#</a> 1. 重绘 repaint</h4> <p>当只更新元素的一些<strong>外观属性</strong>的时候，会引发重绘，如背景色等</p> <h4 id="_2-回流-reflow"><a href="#_2-回流-reflow" class="header-anchor">#</a> 2. 回流 reflow</h4> <p>属性的改变会影响元素<strong>的尺寸、布局、显示与隐藏</strong>等，会引发回流。每个页面至少在初始化时会引发第一次回流</p> <h4 id="_3-区别"><a href="#_3-区别" class="header-anchor">#</a> 3. 区别</h4> <ul><li>回流比重绘的代价更大</li> <li>回流一定会引发重绘，但是重绘不一定引发回流</li></ul> <h4 id="_4-优化"><a href="#_4-优化" class="header-anchor">#</a> 4. 优化</h4> <ul><li>浏览器层面
+<ul><li>浏览器会维护一个队列，把要重绘和回流的操作放入队列内，等队列中的操作到了一定量或间隔一段时间后，进行批处理。这样就可以把多次回流和重绘归并为一次</li></ul></li> <li>个人层面
+<ul><li>改变样式时，不单独改变某个样式，而是改变属性名</li> <li>如果需要往一个元素中添加多个相同元素，可以使用<code>cloneNode</code>一次添加，而不是单个添加多次</li></ul></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/27/2021, 3:27:01 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/views/html-doc/" class="prev">
+        HTML
+      </a></span> <span class="next"><a href="/views/js-doc/">
+        JavaScript
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4c218f8c.js" defer></script><script src="/assets/js/2.75c81597.js" defer></script><script src="/assets/js/8.b2634d1b.js" defer></script>
+  </body>
+</html>
