@@ -3,7 +3,7 @@
 sidebarDepth: 3
 ---
 
-# CSS <img src='/images/icons/hulk.png' width='50' style='margin-top:-15px'> 
+# CSS <img src='./images/icons/test.png' width='50' style='margin-top:-15px'> 
 
 ## css选择器优先级
 
