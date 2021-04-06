@@ -2,7 +2,7 @@
 sidebarDepth: 3
 ---
 
-# Vue 部分 <img src='/images/icons/groot.png' width='50' style='margin-top:-15px'> 
+# Vue 部分 <img src='/images/groot.png' width='50' style='margin-top:-15px'> 
 
 ## 生命周期
 
