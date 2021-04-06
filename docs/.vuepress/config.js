@@ -2,6 +2,7 @@ module.exports = {
   title: "FEAdvance",
   description: "Just Play Around",
   title: "前端进阶之路",
+  base: "/feadvance/", // 如果你的网站会被部署到一个非根路径，你将需要在 .vuepress/config.js 中设置 base
   head: [["link", { rel: "icon", href: "/images/icons/groot.png" }]],
   // head: [['link', { rel: 'stylesheet', href: '/styles/common.less' }]],
   port: 9999,
@@ -168,8 +169,7 @@ module.exports = {
     ],
     //sidebar: 'auto',
     lastUpdated: "Last Updated", // string | boolean
-    smoothScroll: true,
-    base: "/feadvance/", // 如果你的网站会被部署到一个非根路径，你将需要在 .vuepress/config.js 中设置 base
+    smoothScroll: true
   },
   markdown: {
     lineNumbers: true, // 为每个代码块显示行号
