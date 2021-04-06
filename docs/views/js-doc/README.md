@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# Javascript 部分 <img src='/images/icons/nickFury.png' width='50' style='margin-top:-15px'> 
+# Javascript 部分 <img src='./images/nickFury.png' width='50' style='margin-top:-15px'> 
 
 ## js中的7种数据类型
 ::: tip
@@ -101,7 +101,7 @@ d3.innerHTML = a3[b3]; // Hello3
 
 栈数据结构具有**先进后出**（FILO）的特性，可以用乒乓球盒来理解它，最先放进去的球最后才能取出来。
 
-<img src='/images/FILO.png'>
+<img src='./images/FILO.png'>
 
 例如以下代码在栈内存中的体现：
 ``` js
@@ -109,14 +109,14 @@ let a = 1;
 let b = a;
 a = 2;
 ```
-<img src='/images/stackExample.png'>
+<img src='./images/stackExample.png'>
 
 可以看到基本类型的变量名和值都存放在栈内存中，当把变量a赋值给变量b时，栈会开辟新内存来存储b，并且修改a不会对b造成影响。
 
 ### 2. 堆数据结构
 堆数据结构是一种**无序的树状结构**。它满足`key-value`键值对的存储方式，我们能够通过`key`名查找到对应的`value`。比如在书架上，我们通过书名就可以找到对应的书籍。
 
-<img src='/images/heap.png'>
+<img src='./images/heap.png'>
 
 在js中堆内存一般用于存储**引用类型的数据**，这是因为引用类型的数据具有拓展性。但是对于引用类型数据的**引用地址是固定**的，它是一个十六进制的内存地址（如a = AAAFFF000）。所以**引用还是存在于栈内存中**。
 
@@ -127,7 +127,7 @@ let b = a;
 a.push(4);
 ```
 
-<img src='/images/heapExample.png'>
+<img src='./images/heapExample.png'>
 
 当我们创建数组`a`时，栈内存中只保存了**变量**`a`和指向堆内存中数组的**引用地址**。当我们把`a`复制给`b`时，其实只是**复制了一个指针**，两者指向堆内存中的同一个数组，所以无论谁修改，都会影响彼此。这也就是浅拷贝。关于深浅拷贝，可以点击<a href="#深浅克隆">深浅克隆</a>查看。
 
@@ -135,7 +135,7 @@ a.push(4);
 
 队列具有**先进先出**（FIFO）的特性，与栈内存不同的是，**栈内存只有一个口**，出栈入栈都在这个口进行。而**队列有一个出口一个入口**，可以用排队取餐来理解，先排队的先取到餐也就先出去。
 
-<img src='/images/queue.png'>
+<img src='./images/queue.png'>
 
 ## 深浅克隆
 - 对象（数组）的深拷贝与浅拷贝
@@ -177,7 +177,7 @@ console.log(obj, obj2, obj === obj2);  // false
 - json.stringify=>json.parse；(要注意函数、正则、new Date（）在stringify的过程中会有问题)
 - 递归
 
-<img src='/images/shallowClone.png' width='75%' style='margin-left:100px'>
+<img src='./images/shallowClone.png' width='75%' style='margin-left:100px'>
 
 ::: details 查看代码
 ``` js
@@ -368,7 +368,7 @@ console.log(x, y.z);  // 16
 
 
 
-<img src='/images/oo.png' width='65%' style='margin-left:100px'>
+<img src='./images/oo.png' width='65%' style='margin-left:100px'>
 
 ## EventLoop
 
@@ -578,7 +578,7 @@ class ColorPoint extends Color {
 ```js
 P.prototype === person.__proto__;  // true
 ```
-<img src='/images/prototypeChain.png' width='70%'>
+<img src='./images/prototypeChain.png' width='70%'>
 
 ::: tip 作用域链与原型链的区别
 - 当访问一个变量时，解释器会先在当前作用域查找标识符，如果没有找到就去父作用域找，作用域链顶端是全局对象window，如果window都没有这个变量则报错。
@@ -684,9 +684,9 @@ a()()();        //Window
         - 生产环境：Nginx反向代理
 
 
-<img src='/images/ajax.png' width='65%' style='margin-left:100px'>
-<img src='/images/jsonp.png' width='65%' style='margin-left:100px'>
-<img src='/images/jsonp1.png' width='65%' style='margin-left:100px'>
+<img src='./images/ajax.png' width='65%' style='margin-left:100px'>
+<img src='./images/jsonp.png' width='65%' style='margin-left:100px'>
+<img src='./images/jsonp1.png' width='65%' style='margin-left:100px'>
 
 ## get和post的区别
 - `get`通过`url`传递参数，用户可以看到和修改参数，`post`不可以，相对`get`更安全

@@ -19,7 +19,7 @@
             1、HTML5提供的WebSocket，能够节省服务器资源和带宽，还能更及时的进行通讯，避免了ajax轮询不断向服务器发送http请求带来的性能问题。
             2、浏览器通过JavaScript向服务器发出建立WebSocket连接的请求，连接建立后，客户端和服务器端就可以通过TCP连接直接交换数据。
             3、WebSocket的本质是一个基于TCP的协议。
-    <img src='/images/ws.png' width='70%' style='margin-left:100px'> 
+    <img src='./images/ws.png' width='70%' style='margin-left:100px'> 
 
     ``` js
     // 创建WebSocket链接

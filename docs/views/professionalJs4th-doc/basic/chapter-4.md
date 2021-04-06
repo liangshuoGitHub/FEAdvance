@@ -45,7 +45,7 @@ const num2 = num1;
 ```
 这里，num1包含数值5，当把num2初始化为num1时，num2也会得到数值5。但是这个值是存储在num1中值的**副本**，它们两个是完全独立的，所以这两个变量是可以**独立使用、互不干扰**的。如下图：
 
-<img src='/images/copy_primitive.jpg' style='width:50%'>
+<img src='../images/copy_primitive.jpg' style='width:50%'>
 
 #### 2. 引用值复制
 在**通过变量**把引用值赋值给另一个变量时，复制的值实际上是一个**指针**，**指向存储在堆内存中的对象**。操作完成后，两个变量实际上**指向一个对象**，因此一个对象的变化会在另一个对象上体现出来。如下例：
@@ -57,7 +57,7 @@ console.log(o2.name); // reference
 ```
 上例中，o1保存了一个新对象的实例。然后，这个值被赋值给o2，此时这两个变量都指向同一个对象，给o1创建name属性并赋值后，o2也可以访问。下图展示变量与堆内存的关系：
 
-<img src='/images/copy_reference.png' style='width:50%'> 
+<img src='../images/copy_reference.png' style='width:50%'> 
 
 ### 4.1.3 传递参数
 ECMAScript中所有函数的参数都是**按值传递**的。这意味着**函数外的值**会被复制到函数**内部的参数**中，就像从一个变量复制到另一个变量一样。原始值，就跟原始值变量的复制一样；引用值，就跟引用值的复制一样。不过，虽然**变量有按值访问和按引用访问**，但是**传参只有按值传递**。
@@ -148,7 +148,7 @@ function changeColor(){
 ```
 下图展示了上例的作用域链：
 
-<img src="/images/scopechain.jpeg" style="width:50%">
+<img src="../images/scopechain.jpeg" style="width:50%">
 
 由图可知，内部上下文可以通过作用域链访问外部上下文中的一切，但是外部上下文无法访问内部上下文中的任何东西。上下文直接的连接是**线性的、有序的**。例如，`changeColor()`上下文的作用域链中只有两个变量对象：它自己的和全局变量对象，因此，它不能访问`swapColor()`的上下文。
 ::: tip 注意
@@ -398,7 +398,7 @@ JavaScript是使用垃圾回收的语言（C和C++等语言需要开发者自行
 - 垃圾回收器创建`roots`列表，`roots`通常是代码中保留引用的全局变量，在`js`中，一般认定`window`作为`root`，也就是所谓的根部。
 - 从根部出发检查所有的`roots`，所有的`children`也会被递归检查，能从`root`到达的，都标记为`active`。
 - 未被标记为`active`的对象被认定为不被需要，则释放它们。
-<img src="/images/markAndSweep.gif">
+<img src="../images/markAndSweep.gif">
 
 当一个对象零引用时，我们从根部一定无法到达。反之则不然，也就是说从根部无法到达的对象，不一定是严格意义是零引用，比如循环引用，所以**标记清理优于引用计数**。
 ### 4.3.2 引用计数

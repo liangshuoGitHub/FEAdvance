@@ -1,4 +1,4 @@
-# 算法入门 <img src='/images/icons/DocterStrange.png' width='50' style='margin-top:-15px'> 
+# 算法入门 <img src='./images/DocterStrange.png' width='50' style='margin-top:-15px'> 
 
 ## 数组去重
 - Set => [... ]  /  Array.from() ES6
@@ -55,8 +55,8 @@ console.log(middle(arr_init));
 ::: tip 为什么称为冒泡排序？
 在水中，空气的密度比水低，所以水中的气泡会不断上浮，这是我们生活中所理解的冒泡。而冒泡排序的概念也是如此。
 对于一个数组，我们会比较相邻的两个元素，如果前者比后者大，则需要交换两者的位置，也就是较大的后沉，较小的往前浮。
-<img src='/images/bubble.gif'> 
-<img src='/images/bubble.png'> 
+<img src='./images/bubble.gif'> 
+<img src='./images/bubble.png'> 
 :::
 
 ``` js

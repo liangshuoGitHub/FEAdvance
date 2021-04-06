@@ -21,7 +21,7 @@
 ```
 这些代码通过DOM可以表示为一组分层节点,如图所示:
 
-<img src='/images/domTree.png' style='margin-left:100px'> 
+<img src='../images/domTree.png' style='margin-left:100px'> 
 
 - DOM 通过创建表示文档的树，让开发者可以控制网页的内容和结构，通过DOM API,可以删除、添加、替换和修改节点。
 

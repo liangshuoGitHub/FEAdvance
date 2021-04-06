@@ -3,7 +3,7 @@
 sidebarDepth: 3
 ---
 
-# CSS <img src='./images/icons/test.png' width='50' style='margin-top:-15px'> 
+# CSS <img src='./images/hulk.png' width='50' style='margin-top:-15px'> 
 
 ## css选择器优先级
 
@@ -231,7 +231,7 @@ $i: 10;
         - padding-box：从padding区域开始显示背景。
         - content-box：从content区域开  始显示背景。
         
-        <img src='/images/background-origin.gif' style='margin-top:10px'>
+        <img src='./images/background-origin.gif' style='margin-top:10px'>
     - 裁切背景：background-clip
         - no-clip：从border区域向外裁剪背景。
         - border-box：从border区域向外裁剪背景。
@@ -431,7 +431,7 @@ box2.style.top = (winH - box2H) / 2 + 'px';
 4、多列布局(基本不用)
     
 <!-- ![盒子模型](/images/box-model.png) -->
-<img src='/images/box-model.png' width='50%' style='margin-left:100px'> 
+<img src='./images/box-model.png' width='50%' style='margin-left:100px'> 
 
 ::: tip 回答技巧
 分析痛点+看源码

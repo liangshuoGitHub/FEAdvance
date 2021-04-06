@@ -275,7 +275,7 @@ console.log(null === undefined); // false
 
 下表总结了不同类型值与布尔值之间的转换规则：
 
-<img src='/images/Boolean.png'> 
+<img src='../images/Boolean.png'> 
 
 ### 3.4.5 Number类型
 
@@ -1277,7 +1277,7 @@ while(i < 10){
 }
 ```
 2. for循环语句**先求值条件表达式，如果结果为true，则执行循环体，然后执行循环后表达式**，如图所示：
-<img src='/images/forLoop.png'> 
+<img src='../images/forLoop.png'> 
 
 3. 无法通过while循环实现的逻辑，也无法通过for循环实现，，因此for循环只是将循环相关的代码封装在了一起而已。
 4. 在for循环的**初始化代码**中，是可以**不用变量声明关键字**的，但是初始化定义的迭代器变量在循环执行完成后几乎就用不到了，所以**最佳实践是使用let声明迭代器变量**，**将变量的作用域限定在循环中**。
