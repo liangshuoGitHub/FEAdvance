@@ -169,7 +169,7 @@ module.exports = {
     //sidebar: 'auto',
     lastUpdated: "Last Updated", // string | boolean
     smoothScroll: true,
-    base: "/", // 如果你的网站会被部署到一个非根路径，你将需要在 .vuepress/config.js 中设置 base
+    base: "/feadvance/", // 如果你的网站会被部署到一个非根路径，你将需要在 .vuepress/config.js 中设置 base
   },
   markdown: {
     lineNumbers: true, // 为每个代码块显示行号
