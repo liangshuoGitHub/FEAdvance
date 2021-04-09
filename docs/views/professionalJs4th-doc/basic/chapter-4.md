@@ -40,7 +40,7 @@ console.log(typeof person, person.age); // object  22
 除了存储方式不同，原始值和引用至在通过**变量复制**时也不同。如下：
 #### 1. 原始值复制
 ``` js
-const num1 = 1;
+const num1 = 5;
 const num2 = num1;
 ```
 这里，num1包含数值5，当把num2初始化为num1时，num2也会得到数值5。但是这个值是存储在num1中值的**副本**，它们两个是完全独立的，所以这两个变量是可以**独立使用、互不干扰**的。如下图：
