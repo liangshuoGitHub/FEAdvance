@@ -155,3 +155,133 @@ console.log(d1.toUTCString());  // Wed, 20 May 2020 05:22:33 GMT
 |setMilliseconds(milliseconds)|设置日期中的毫秒|
 |setUTCMilliseconds(milliseconds)|设置UTC日期中的毫秒|
 |getTimeZoneOffset()|返回以分钟计的UTC与本地时区的偏移量|
+
+## 5.2 RegExp
+`RegExp`构造函数创建了一个正则表达式对象，用于将文本与一个规则匹配，可以匹配字符（符合规则的字符）和匹配位置（符合规则的字符的位置）。
+### 5.2.1 语法
+有两种方式可以创建一个`RegExp`对象，**字面量和构造函数**。
+
+在使用构造函数创建正则对象时，需要在转义字符前面再加一个反斜杠。
+``` js
+// 字面量
+const reg1 = /.at/gi; // 匹配所有以"at"结尾的三字符组合，忽略大小写
+
+// 构造函数
+const reg2 = new RegExp(".at", "gi");
+const reg3 = RegExp(/.at/, "gi");
+
+// 在使用构造函数创建正则对象时，需要在转义字符前面再加一个反斜杠
+const reg4 = /\w+/;
+const reg5 = new RegExp("\\w+", i);
+```
+#### 参数
+以`/pattern/flags`为例
+
+- `pattern`（规则）。必选
+
+    正则表达式的文本
+- `flags`（标记）。可选，如果指定，标记可以是以下值的任意组合：
+    - `i` 忽略大小写
+    - `s` 允许`.`匹配换行符
+    - `u` 使用Unicode码的规则进行匹配
+    - `g` 全局匹配；找到所有匹配，而不是在第一个匹配后停止
+    - `y` 执行粘性匹配（sticky），匹配从此正则表达式的`lastIndex`属性指示的索引开始
+    - `m` 多行；将开始和结束字符（`^`和`$`）视为在多行上工作（也就是分别匹配每一行的开始和结束（由`/n`或`/r`）分割），而不是只匹配整个输入字符串的最开始和最末尾处
+
+### 5.2.2 特殊字符的含义
+#### 1. 元字符
+|字符|含义|
+|:----:|:-----|
+|`.`|匹配**除换行符外**的任意单个字符，例如`/.y/`会匹配`"yes make my day"`中的`"my"`和`"ay"`，不会匹配`"yes"`，如果设置限定符`s`，则会匹配换行符|
+|`\d`|匹配阿拉伯数字，等价于`[0-9]`|
+|`\D`|匹配不是阿拉伯数字的字符，等价于`[^0-9]`|
+|`\w`|查找数字、字母、下划线，等价于`[0-9a-zA-Z_]`|
+|`\W`|匹配不是数字、字母或下划线的字符，等价于`[^0-9a-zA-Z_]`|
+|`\s`|匹配空白符，包括空格、制表符、换页符、换行符和其他Unicode空格。例如`/\s\w*/g`匹配`"B2 hhh22_ "`中的`" hhh22_"`和`" "`|
+|`\S`|匹配非空白符|
+|`\t`|匹配水平制表符（tab）|
+|`\r`|匹配回车符|
+|`\n`|匹配换行符|
+|`\v`|匹配垂直制表符|
+|`\f`|匹配换页符|
+|`[\b]`|匹配退格符（backspace），不要与`\b`混淆|
+|`\0`|匹配NUL字符，不要在此后面跟小数点|
+|`\xhh`|匹配两位十六进制数字表示的字符|
+|`\uhhhh`|匹配四位十六进制数字表示的Unicode字符|
+|`\cX`|`X`是A-Z的一个字母，匹配字符串中的一个控制字符。例如`/\cM/`匹配字符串中的control-M|
+
+#### 2. 字符集合
+|字符|含义|
+|:----:|:-----|
+|`[xyz]`|字符集/字符组。匹配集合中任意一个字符。也可以使用连字符`-`指定一个范围，例如`[abcd]`等价于`[a-d]`|
+|`[^xyz]`|反义字符集。匹配任意一个不在括号范围内的字符|
+
+#### 3. 边界
+|字符|含义|
+|:----:|:-----|
+|`^`|匹配输入开始|
+|`$`|匹配输入结尾|
+|`\b`|表示字母在单词的边界，例如`/\bon/`表示`"on"`位于单词的右侧边界，`/on\b/`表示`"on"`位于字符串的左侧边界|
+|`\B`|表示字母不在单词的边界，例如`/\Bon/`表示`"on"`的左侧不是字符的边界，`/on\B/`表示`"on"`的右侧不是单词的边界|
+
+``` js
+// \b 和 \B 的代码示例
+let str = "at noon";
+console.log(str.match(/\bon/));  // null
+console.log(str.match(/on\b/));  // ["on", index: 5, input: "at noon", groups: undefined]
+console.log(str.match(/\Bon/));  // ["on", index: 5, input: "at noon", groups: undefined]
+console.log(str.match(/on\B/));  // null
+```
+
+#### 4. 分组和反向引用
+|字符|含义|
+|:----:|:-----|
+|`(x)`|匹配`x`并且捕获匹配项，其中括号被称为捕获括号|
+|`\n`|`n`是一个正整数，一个反向引用，指向正则表达式中第n个括号（从左往右数）中匹配的字符串|
+|`(?:x)`|匹配`x`不会捕获匹配项，其中括号被称为非捕获括号|
+
+#### 5. 量词
+|字符|含义|
+|:----:|:-----|
+|`x*`|匹配`x`0次或者多次。例如，`/bo*/` 匹配 "A ghost booooed" 中的 "boooo"，"A bird warbled" 中的 "b"，但是不匹配 "A goat grunted"|
+|`x+`|匹配`x`1次或者多次，等价于`{1,}`|
+|`x*?`和`x+?`|像上面的 * 和 + 一样匹配前面的模式 x，然而匹配是最小可能匹配|
+|`x?`|匹配`x`0次或者1次|
+|`x(?=y)`|只有`x`后面紧跟着`y`时，才匹配`x`|
+|`x(?!y)`|只有`x`后面不是紧跟着`y`时，才匹配`x`|
+|`x|y`|匹配`x`或者`y`|
+|`x{n}`|在`x`连续出现`n`次时匹配|
+|`x{n,}`|`n`是一个正整数，在`x`至少出现`n`次时匹配|
+|`x{n,m}`|`n`和`m`为正整数。在`x`连续出现`n`到`m`次时匹配|
+
+### 5.2.3 属性
+- `RegExp.prototype` 允许为所有正则对象添加属性
+- `RegExp.length` 值为2
+
+通过原型链继承的属性：
+
+`arity`,`caller`,`constructor`,`length`,`name`
+
+### 5.2.4 方法
+全局对象`RegExp`自身没有方法，不过它会通过原型链继承一些方法：`apply`,`call`,`toSource`,`toString`
+
+### 5.2.5 RegExp 实例
+
+#### 1. 属性
+- `RegExp.prototype.constructor` 创建该正则对象的构造函数
+- `RegExp.prototype.global` 是否开启了全局匹配
+- `RegExp.prototype.ignoreCase` 是否忽略大小写
+- `RegExp.prototype.lastIndex` 下次匹配开始的字符串的索引位置
+- `RegExp.prototype.multiline` 是否开启了多行匹配
+- `RegExp.prototype.source` 正则对象的源模式文本
+- `RegExp.prototype.sticky` 是否开始了粘滞匹配
+
+从对象继承的属性：`__parent__`,`__proto__`
+
+#### 2. 方法
+- `RegExp.prototype.exec()` 在目标字符串中执行一次正则匹配操作
+- `RegExp.prototype.test()` 测试字符串是否满足当前正则的规则
+- `RegExp.prototype.toString()` 返回一个字符串，值为该正则对象的字面量形式。覆盖了`Object.prototype.toString()`方法
+- `RegExp.prototype.toSource()` 返回一个字符串，值为该正则对象的字面量形式。覆盖了`Object.prototype.toSource()`方法
+
+从对象继承的方法：`__defineGetter__`, `__defineSetter__`, `hasOwnProperty`, `isPrototypeOf`, `__lookupGetter__`, `__lookupSetter__`, `__noSuchMethod__`, `propertyIsEnumerable`, `toLocaleString`, `unwatch`, `valueOf`, `watch`
