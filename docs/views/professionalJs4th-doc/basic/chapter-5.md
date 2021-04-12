@@ -285,3 +285,50 @@ console.log(str.match(/on\B/));  // null
 - `RegExp.prototype.toSource()` 返回一个字符串，值为该正则对象的字面量形式。覆盖了`Object.prototype.toSource()`方法
 
 从对象继承的方法：`__defineGetter__`, `__defineSetter__`, `hasOwnProperty`, `isPrototypeOf`, `__lookupGetter__`, `__lookupSetter__`, `__noSuchMethod__`, `propertyIsEnumerable`, `toLocaleString`, `unwatch`, `valueOf`, `watch`
+
+## 5.3 原始值包装类型
+为了方便操作原始值，ECMAScrpit提供了三种特殊的引用类型：`Boolean`,`Number`,`String`。每当用到某个原始值的方法或属性时，后台都会创建一个相应的**原始包装类型的对象**，从而暴露出操作原始值的各种方法。如下例：
+``` js
+let s1 = "some text";
+let s2 = s1.substring(2);
+```
+原始值`s1`不是对象，逻辑上不应该有方法，但是上述代码还能正常执行，是因为后台进行了处理。在第二行访问`s1`时，是以`读模式`访问的，也就是要**从内存中读取变量保存的值**。在以读模式访问**字符串值**的任何时候，后台都会执行以下三步：
+1. 创建一个`String`类型的实例；
+2. 调用实例上的方法；
+3. 销毁实例。
+
+代码表示如下：
+``` js
+let s1 = new String("some text");
+let s2 = s1.substring(2);
+s1 = null;
+```
+对于布尔值和数值而言也是一样，只不过使用的是`Boolean`和`Number`包装类型。
+
+**引用类型与原始包装类型的主要区别**在于对象的生命周期。一般引用类型的实例会在离开作用域时被销毁，而自动创建的原始值包装对象会在访问它的那行代码执行完后被销毁。所以**不能在运行时给原始值添加属性和方法**，如下例：
+``` js
+let str = "some text";
+str.color = "red";
+console.log(str.color); // undefined
+```
+第二行代码在运行时会创建一个临时的`String`对象，而当第三行代码执行时，这个对象已经被销毁了。实际上第三行代码创建了自己的`String`对象，但是这个对象没有color属性。
+
+所有原始值包装对象都会转换为布尔值`true`。
+
+另外，`Object`构造函数作为一个工厂方法，能根据传入值的类型返回相应的原始值包装类型的实例。例如：
+``` js
+let str = new Object("some text");
+let boo = new Object(false);
+let num = new Object(123);
+console.log(str instanceof String);  // true
+console.log(boo instanceof Boolean); // true
+console.log(num instanceof Number);  // true
+```
+
+### 5.3.1 Boolean
+
+`Boolean`是对应布尔值的引用类型。要创建一个`Boolean`对象，就调用`Boolean`构造函数并传入`true`或`false`。
+
+`Boolean`的实例重写了`valueOf()`方法，返回原始值`true`或`false`。重写了`toString()`方法，返回字符串`"true"`或`"false"`。
+
+注意`new Boolean(false) && true` 会返回`true`，因为所有的原始值包装对象都会被转换为布尔值`true`。
