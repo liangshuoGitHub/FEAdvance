@@ -221,8 +221,8 @@ const reg5 = new RegExp("\\w+", i);
 |:----:|:-----|
 |`^`|匹配输入开始|
 |`$`|匹配输入结尾|
-|`\b`|表示字母在单词的边界，例如`/\bon/`表示`"on"`位于单词的右侧边界，`/on\b/`表示`"on"`位于字符串的左侧边界|
-|`\B`|表示字母不在单词的边界，例如`/\Bon/`表示`"on"`的左侧不是字符的边界，`/on\B/`表示`"on"`的右侧不是单词的边界|
+|`\b`|表示字母在单词的边界，例如`/\bon/`表示`"on"`位于单词的左侧边界，`/on\b/`表示`"on"`位于单词的右侧边界|
+|`\B`|表示字母不在单词的边界，例如`/\Bon/`表示`"on"`的左侧不是单词的边界，`/on\B/`表示`"on"`的右侧不是单词的边界|
 
 ``` js
 // \b 和 \B 的代码示例
@@ -292,7 +292,7 @@ console.log(str.match(/on\B/));  // null
 let s1 = "some text";
 let s2 = s1.substring(2);
 ```
-原始值`s1`不是对象，逻辑上不应该有方法，但是上述代码还能正常执行，是因为后台进行了处理。在第二行访问`s1`时，是以`读模式`访问的，也就是要**从内存中读取变量保存的值**。在以读模式访问**字符串值**的任何时候，后台都会执行以下三步：
+原始值`s1`不是对象，逻辑上不应该有方法，但是上述代码还能正常执行，是因为后台进行了处理。在第二行访问`s1`时，是以`读模式`访问的，也就是要**从内存中读取变量保存的值**。在以读模式访问字符串值的时候，后台会执行以下三步：
 1. 创建一个`String`类型的实例；
 2. 调用实例上的方法；
 3. 销毁实例。
@@ -317,18 +317,150 @@ console.log(str.color); // undefined
 
 另外，`Object`构造函数作为一个工厂方法，能根据传入值的类型返回相应的原始值包装类型的实例。例如：
 ``` js
-let str = new Object("some text");
-let boo = new Object(false);
-let num = new Object(123);
+let str = new Object("some text"); // 字符串包装对象
+let boo = new Object(false);  // 布尔包装对象
+let num = new Object(123);  // 数值包装对象
+let sym = new Object(Symbol('sym')); // 符号包装对象
 console.log(str instanceof String);  // true
 console.log(boo instanceof Boolean); // true
 console.log(num instanceof Number);  // true
+console.log(sym instanceof Symbol);  // true
 ```
-
+通过`Object`构造函数，我们可以**创建符号包装对象**。
 ### 5.3.1 Boolean
 
-`Boolean`是对应布尔值的引用类型。要创建一个`Boolean`对象，就调用`Boolean`构造函数并传入`true`或`false`。
-
-`Boolean`的实例重写了`valueOf()`方法，返回原始值`true`或`false`。重写了`toString()`方法，返回字符串`"true"`或`"false"`。
+#### 1. Boolean 引用类型 与 Boolean 对象
+`Boolean`是对应布尔值的**引用类型**。要创建一个`Boolean`对象，就调用`Boolean`构造函数并传入`true`或`false`，如不传，**默认**为`false`。
+#### 2. 继承的方法
+`Boolean`的实例重写了`valueOf()`方法，**返回原始值**`true`或`false`。重写了`toString()`方法，返回字符串`"true"`或`"false"`。
 
 注意`new Boolean(false) && true` 会返回`true`，因为所有的原始值包装对象都会被转换为布尔值`true`。
+
+### 5.3.2 Number
+#### 1. Number 引用类型 与 Number 对象
+`Number`是对应数值的**引用类型**。要创建一个`Number`对象，就使用`Number`构造函数并传入数值，如不传，**默认**为`0`。
+
+#### 2. 继承的方法
+`Number`类型也重写了`valueOf()`、`toString()`、`toLocaleString()`方法。其中`valueOf()`方法返回**原始数值**，另外两个方法返回**数值字符串**。`toString()`方法接收一个可选参数作为基数（进制数），返回相应基数形式的数值字符串，默认为`10`。
+#### 3. 将数值格式化为字符串
+除了继承的方法，`Number`类型还提供了几个用于将数值格式化为字符串的方法：
+- `toFixed()`
+
+    该方法返回包含指定小数位数的数值字符串。如果数值本身的小数位大于参数，就**用0填充**，否则就**四舍五入**。参数默认为`0`。
+    ``` js
+    let num1 = 10, num2 = 10.789;
+    console.log(num1.toFixed(3)); // 10.000
+    console.log(num2.toFixed(2)); // 10.79
+    ```
+    一般情况下，`toFixed()`方法可以表示0-20个小数位的数值。
+- `toExponential()`
+
+    exponential意为指数。`toExponential()`方法返回以科学计数法（指数计数法）表示的数值字符串。参数表示结果中小数的位数，默认为`0`;
+    ``` js
+    let num = 990;
+    console.log(num.toExponential(3)); // 9.900e+2
+
+    let num2 = 99;
+    console.log(num.toExponential(1)); // 9.9e+1
+    console.log(num.toExponential(0)); // 1e+2 由于没办法不用小数就能表示99，所以就舍入为100
+    ```
+- `toPrecision()`
+
+    precision意为精准。`toPrecision()`方法会根据数值和精度来决定调用`toFixed()`返回固定长度形式还是调用`toExponential()`返回科学计数法形式的数值字符串。该方法接受一个参数表示结果中数字的总位数
+    ``` js
+    let num = 99;
+    console.log(num.toPrecision(1)); // 1e+2;  99 不能只用一位数字来表示，所以将它舍入为100
+    console.log(num.toPrecision(2)); // 99;
+    console.log(num.toPrecision(3)); // 99.0;
+    ```
+#### 4. isInteger() 方法与安全整数
+integer意为整数。ES6新增的`isInteger()`方法用来判断传入的参数**是否为整数**，返回布尔值。
+``` js
+console.log(Number.isInteger(0));   // true
+console.log(Number.isInteger(1.00));  // true
+console.log(Number.isInteger(99.088));  // false
+console.log(Number.isInteger(NaN)); // false
+console.log(Number.isInteger(-10000)); // true
+console.log(Number.isInteger(true)); // false
+```
+IEEE754数值格式有一个数值范围是从`Number.MIN_SAFE_INTEGER （-2^53 + 1）`到`Number.MAX_SAFE_INTEGER  （2^53 - 1）`。在这个范围内，二进制值可以表示一个整数值，超出这个范围，二进制值可能无法正确表示整数值。`Number.isSafeInteger()`方法可以帮助我们鉴别整数是否在这个范围内。
+``` js
+console.log(Number.isSafeInteger(2 ** 53 - 1)); // true
+console.log(Number.isSafeInteger(2 ** 53)); // false
+```
+
+### 5.3.3 String
+`String`是对应字符串的**引用类型**。要创建一个`String`对象，使用`String`构造函数并传入一个字符串值。如不传，默认为`""`。
+``` js
+const stringObject = new String("hello world");
+```
+`String`对象有三个**继承**的方法：`valueOf()`、`toLocaleString()`、`toString()`都返回**原始字符串值**。
+
+每个`String`对象都有一个`length`**属性**，表示字符串中字符的数量。即使字符串中包含双字节字符（而不是单字节的ASCII字符）也仍然按照单字符来计数。
+``` js
+let stringValue = "hello world";
+console.log(stringValue.length); // 11
+```
+`String`类型提供了许多方法来解析和操作字符串。
+#### 1. JavaScript 字符
+JavaScript字符串由**16位码元**（code unit）组成。对于大多数字符来说，**每16位码元对应一个字符**，字符串的`length`属性实际上表示字符串包含多少16位码元。
+
+JavaScript字符串使用了两种Unicode编码混合的策略：UTF-16和UCS-2。对于UTF-16而言，每个字符都是用16位表示的，它提供以下几个方法：
+- `charAt()` 方法查找给定索引位置的16位码元，并返回该码元对应的字符
+- `charCodeAt()` 方法返回指定索引位置的16位码元
+- `fromCharCode()` 方法通过给定的UTF-16码元创建字符
+``` js
+let str = "hello world";
+console.log(str.length); // 11
+console.log(⑫┫At(1)); // 101
+console.log(String.fromCharCode(101, 119)); // ew 
+```
+但是16位只能唯一表示65 536个字符，这对于大多数语言字符集足够了，在Unicode中称为**基本多语言平面**。
+
+为了表示更多的字符，Unicode才赢了一个策略，即每个字符使用另外16位去选择一个**增补平面**，这种每个字符使用两个16位码元的策略称为**代理对**。它相应的有`codePoionAt()`和`fromCodePoint()`方法。
+::: tip 注意
+对于UCS-2，详见高程第四版 P118
+:::
+
+#### 2. normalize() 方法
+按照指定的一种 Unicode 正规形式将当前字符串正规化。（如果该值不是字符串，则首先将其转换为一个字符串）。它不影响字符串本身的值。
+
+#### 语法
+`str.normalize("from");`
+#### 参数
+`from` 为四种 Unicode 正规形式 "NFC", "NFD", "NFKC", 以及 "NFKD" 其中的一个, 默认值为 "NFC"。
+- NFC - Normalization Form Canonical Composition.
+- NFD - Normalization Form Canonical Decomposition.
+- NFKC - Normalization Form Compatibility Composition.
+- NFKD - Normalization Form Compatibility Decomposition.
+#### 示例
+``` js
+const str = "\u1E9B\u0323";
+
+str.normalize("NFC"); // "\u1E9B\u0323"
+str.normalize(); // 和上面一样
+```
+::: tip 注意
+这四种规范化形式的具体细节超出了本书范围
+:::
+
+#### 3. 字符串操作方法
+- 拼接字符串
+
+`concat()`方法用于拼接字符串，接受任意多个参数，但是更常用的方式是**加号操作符（+）**或者模板字符串。
+``` js
+let str = 'hello';
+console.log(str.concat(...["world", "!"]));  // hello world!
+console.log(str + "hello" + "!");  // hello world!
+console.log(`${str} world!`);  // hello world!
+```
+- 提取子字符串
+
+`slice()`、`substring()`、`substr()`这三个方法用于提取子字符串。三个方法都接收**一或两个**参数。第一个参数表示**子字符串开始的位置**。省略第二个参数意味着提取到字符串末尾。
+
+当**参数都是正数**时，`slice()`和`substring()`的第二个参数代表提取结束位置的索引（不包含），`substr()`的第二个参数代表需要提取的个数。
+
+当**某个参数是负数**时，`slice()`会将所有的负数参数值转换为字符串长度加上该负数值；`substring()`会将所有负数参数值转换为0；`substr()`会将第一个负数参数值转换为字符串长度加上该负数值，将第二个负数参数转为为0。
+::: tip 注意
+`substring()`方法会将较小的参数作为起点，较大的参数作为重点，比如调用`substring(3, 0)`相当于调用`substr(0, 3)`。
+:::
