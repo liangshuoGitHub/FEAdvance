@@ -464,3 +464,16 @@ console.log(`${str} world!`);  // hello world!
 ::: tip 注意
 `substring()`方法会将较小的参数作为起点，较大的参数作为重点，比如调用`substring(3, 0)`相当于调用`substr(0, 3)`。
 :::
+
+#### 4. 字符串位置方法
+`indexOf()`和`lastIndexOf()`方法用于在字符串中搜索传入的字符串，第一个参数代表要查找位置的字符串，第二个参数可选，代表开始搜索的位置。两个方法的区别在与`indexOf()`从字符串开头开始查找，`lastIndexOf()`方法从字符串末尾开始查找。
+``` js
+const sentence = "Hello, my name is ls, I am 25 years old and my job is FE!";
+let arr = [];
+let pos = sentence.indexOf('e');
+while(pos > -1){
+    arr.push(pos);
+    pos = sentence.indexOf("e", pos + 1);
+}
+console.log(arr); // [1, 13, 31]
+```
