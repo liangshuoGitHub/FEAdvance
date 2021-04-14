@@ -172,7 +172,7 @@ const reg3 = RegExp(/.at/, "gi");
 
 // 在使用构造函数创建正则对象时，需要在转义字符前面再加一个反斜杠
 const reg4 = /\w+/;
-const reg5 = new RegExp("\\w+", i);
+const reg5 = new RegExp("\\w+", "i");
 ```
 #### 参数
 以`/pattern/flags`为例
@@ -412,7 +412,8 @@ JavaScript字符串使用了两种Unicode编码混合的策略：UTF-16和UCS-2�
 ``` js
 let str = "hello world";
 console.log(str.length); // 11
-console.log(⑫┫At(1)); // 101
+console.log(str.charAt(1)); // e
+console.log(str.charCodeAt(1)); // 101
 console.log(String.fromCharCode(101, 119)); // ew 
 ```
 但是16位只能唯一表示65 536个字符，这对于大多数语言字符集足够了，在Unicode中称为**基本多语言平面**。
@@ -447,7 +448,7 @@ str.normalize(); // 和上面一样
 #### 3. 字符串操作方法
 - 拼接字符串
 
-`concat()`方法用于拼接字符串，接受任意多个参数，但是更常用的方式是**加号操作符（+）**或者模板字符串。
+`concat()`方法用于拼接字符串，接受任意多个参数，但是更常用的方式是**加号操作符**或者**模板字符串**。
 ``` js
 let str = 'hello';
 console.log(str.concat(...["world", "!"]));  // hello world!
@@ -462,13 +463,16 @@ console.log(`${str} world!`);  // hello world!
 
 当**某个参数是负数**时，`slice()`会将所有的负数参数值转换为字符串长度加上该负数值；`substring()`会将所有负数参数值转换为0；`substr()`会将第一个负数参数值转换为字符串长度加上该负数值，将第二个负数参数转为为0。
 ::: tip 注意
-`substring()`方法会将较小的参数作为起点，较大的参数作为重点，比如调用`substring(3, 0)`相当于调用`substr(0, 3)`。
+`substring()`方法会将较小的参数作为起点，较大的参数作为终点，比如调用`substring(3, 0)`相当于调用`substring(0, 3)`。
 :::
 
 #### 4. 字符串位置方法
 `indexOf()`和`lastIndexOf()`方法用于在字符串中搜索传入的字符串，第一个参数代表要查找位置的字符串，第二个参数可选，代表开始搜索的位置。两个方法的区别在与`indexOf()`从字符串开头开始查找，`lastIndexOf()`方法从字符串末尾开始查找。
 ``` js
 const sentence = "Hello, my name is ls, I am 25 years old and my job is FE!";
+console.log(sentence.indexOf("Hello")); // 0
+console.log(sentence.lastIndexOf("Hello")); // 0
+console.log(sentence.lastIndexOf("Hello") === sentence.indexOf("Hello")); // true
 let arr = [];
 let pos = sentence.indexOf('e');
 while(pos > -1){
@@ -477,3 +481,111 @@ while(pos > -1){
 }
 console.log(arr); // [1, 13, 31]
 ```
+#### 5. 字符串包含方法
+ES6提供了三个用来判断**字符串中是否包含另一个字符串**的方法，这三个方法都从字符串中搜索传入的字符串，返回布尔值。都接受可选的第二个参数
+- `includes()` 的第二个参数代表开始检索的位置（包含）
+- `startsWith()` 判断字符串是否以传入的字符串作为**开头**，第二个参数代表开始检索的位置（包含）
+- `endsWith()` 判断字符串是否以传入的字符串作为**结尾**，第二个参数代表字符串的位置（不包含），默认为字符串长度，如果提供这个参数，就好像**字符串只有这么多字符一样**
+``` js
+const str = "abcdefg";
+console.log(str.includes("c", 2)); // true
+console.log(str.startsWith("ab")); // true
+console.log(str.startsWith("cd", 2)); // true
+console.log(str.endsWith("fg", str.length - 1)); // false
+```
+#### 6. trim() 方法
+`trim()`方法会创建原始字符串的一个**副本**，删除前后所有空格，因为`trim()`方法返回的是原始字符串的副本，所以原始字符串**不受影响**。`trimLeft()`方法和`trimRight()`方法分别用于删除字符串**前面和后面**的空格。
+
+#### 7. repeat() 方法
+`repeat()`方法接收一个整数参数，表示要将字符串复制多少次，返回拼接所有副本后的结果。
+#### 语法
+`str.repeat(count)`
+#### 参数
+`count` 为正整数或0，当为0时，返回空字符串。
+#### 返回值
+包含指定字符串的指定数量副本的新字符串。
+#### 示例
+``` js
+let str = "na ";
+console.log(str.repeat(1)); // "na "
+console.log(str.repeat(2)); // "na na "
+```
+#### 8. padStart() 和 padEnd() 方法
+`padStart()`方法和`padEnd()`方法的作用是**用另一个字符串填充当前字符串**（重复，如果需要的话），使得当前字符串达到给定的长度。`padStart()`方法从字符串开头开始填充，`padEnd()`方法从字符串结尾开始填充。
+#### 语法
+`str.padStart(targetLength, padString)`
+#### 参数
+`targetLength` 当前字符串需要填充到的目标长度，如果小于当前长度，就返回当前字符串本身。
+
+`padString` 填充字符串，可选。默认为空字符串，如果填充字符串后长度超过了目标长度，就只保留左侧部分，其余部分会被截断。
+#### 返回值
+在原字符串开头或结尾填充填充字符串后的新字符串。
+
+``` js
+const str = "abc";
+console.log(str.padStart(2, "xxx")); // "abc"
+console.log(str.padStart(5, "xyz")); // "abcxy"
+console.log(str.padStart(10, "xyz")); // "abcxyzxyzx"
+console.log(str.padEnd(6, "xyz")); // "abcxyz"
+```
+#### 9. 字符串迭代与解构
+字符串的原型上暴露了一个`@@iterator`方法，通过这个方法我们可以迭代字符串。例如我们可以像下面这样手动使用迭代器：
+``` js
+let str = "abc";
+let iterator = str[Symbol.iterator]();
+console.log(iterator.next()); // {value: "a", done: false}
+console.log(iterator.next()); // {value: "a", done: false}
+console.log(iterator.next()); // {value: "a", done: false}
+console.log(iterator.next()); // {value: undefined, done: true}
+console.log(iterator.next()); // {value: undefined, done: true}
+```
+在`for-of`循环中可以通过这个迭代器按顺序访问每个字符：
+``` js
+for (const item of "abc") {
+    console.log(item);
+}
+// a
+// b
+// c
+```
+有了这个迭代器，字符串就能够通过解构操作符来解构了：
+``` js
+// 把字符串分割为字符数组
+const str = "abcde";
+let arr = [...str];
+console.log(arr); // ["a", "b", "c", "d", "e"]
+```
+
+#### 10. 字符串大小写转换
+- 通用方法
+
+`toLowerCase()`和`toUpperCase()`
+- 地区特定的转换方法
+
+`toLocaleLowerCase()`和`toLocaleUpperCase()`
+
+如果不知道代码涉及什么语言，**最好使用地区特定的转换方法。**
+#### 11. 字符串 模式匹配 方法
+`String`类型为了在字符串中实现**模式匹配**设计了几个方法，分别是`match()`、`search()`、`replace()`和`split()`方法。
+- `match()`方法   
+    `match()`方法检索返回一个**字符串匹配正则表达式的结果**，本质上和`RegExp`对象的`exec()`方法相同
+    - 语法  
+        `str.match(regexp)`
+    - 参数  
+        `regexp`代表一个正则表达式对象。如果传入非正则表达式对象，则会隐式的调用`new RegExp(obj)`将其转换为正则表达式对象。如果不传递任何参数，返回`[""]`
+    - 返回值
+        - 如果使用`g`标记，则返回与正则表达式匹配的所有结果，不会返回捕获组
+        - 如果未使用`g`标记，则返回与正则匹配的第一个结果及其相关的捕获组（`Array`）。这种情况下，返回的项目具有如下的其他属性：
+            - `input`：搜索的字符串
+            - `index`：匹配结果的开始位置
+            - `groups`：一个捕获组数组或`undefined`（没有定义命名捕获组的情况下）
+            
+        最终返回一个`Array`，内容取决于`g`标记的存在与否。如果未找到匹配，则返回`null`
+    - 示例
+    ``` js
+    let str = "cat, fat, bat, sat";
+    console.log(str.match(/.at/)); // [0:'cat', index: 0, input: 'cat, fat, bat, sat', groups: undefined]
+    console.log(str.match(/(?<item>.at)/)); // [0: 'cat', index: 0, input: 'cat, fat, bat, sat', groups: {item: 'cat'}]
+    console.log(str.match(/.at/g)); // ["cat", "fat", "bat", "sat"]
+    console.log(str.match(/xxx/)); // null
+    ```
