@@ -418,7 +418,7 @@ console.log(String.fromCharCode(101, 119)); // ew
 ```
 但是16位只能唯一表示65 536个字符，这对于大多数语言字符集足够了，在Unicode中称为**基本多语言平面**。
 
-为了表示更多的字符，Unicode才赢了一个策略，即每个字符使用另外16位去选择一个**增补平面**，这种每个字符使用两个16位码元的策略称为**代理对**。它相应的有`codePoionAt()`和`fromCodePoint()`方法。
+为了表示更多的字符，Unicode采用了一个策略，即每个字符使用另外16位去选择一个**增补平面**，这种每个字符使用两个16位码元的策略称为**代理对**。它相应的有`codePoionAt()`和`fromCodePoint()`方法。
 ::: tip 注意
 对于UCS-2，详见高程第四版 P118
 :::
@@ -567,7 +567,7 @@ console.log(arr); // ["a", "b", "c", "d", "e"]
 如果不知道代码涉及什么语言，**最好使用地区特定的转换方法。**
 #### 11. 字符串 模式匹配 方法
 `String`类型为了在字符串中实现**模式匹配**设计了几个方法，分别是`match()`、`search()`、`replace()`和`split()`方法。
-- `match()`方法   
+- **`match()`** 方法   
     `match()`方法检索返回一个**字符串匹配正则表达式的结果**，本质上和`RegExp`对象的`exec()`方法相同
     - 语法  
         `str.match(regexp)`
@@ -589,3 +589,110 @@ console.log(arr); // ["a", "b", "c", "d", "e"]
     console.log(str.match(/.at/g)); // ["cat", "fat", "bat", "sat"]
     console.log(str.match(/xxx/)); // null
     ```
+- **`search()`** 方法  
+    `search()` 方法执行正则表达式和`String`对象之间的一个搜索匹配
+    - 语法  
+        `str.search(regexp)`
+    - 参数  
+        `regexp` 是一个正则表达式对象，如果传入非正则表达式对象(`obj`)，则会使用`new RegExp(obj)`隐式转换为正则表达式对象
+    - 返回值  
+        如果匹配成功，返回正则在字符串中首次匹配项的索引值，否则返回`-1`
+    - 描述  
+        在想要知道字符串是否存在某个模式（pattern）时使用，类似于正则表达式的`test()`方法
+    - 示例  
+        ``` js
+            let str = "hey Ls.";
+            console.log(str.search(/[A-Z]/g)); // 4
+            console.log(str.search(/./g));  // 0
+            console.log(str.search(/\d/g)); // -1
+        ```
+- **`replace()`** 方法  
+    `replace()` 方法返回一个由替换值（replacement）替换一些或所有匹配的模式（pattern）后的新字符串。pattern可以是字符串或正则表达式，替换值可以是字符串或一个每次匹配都要调用的回调函数
+    - 语法  
+        `str.replace(regexp|substr, newSubstr|function)`
+    - 参数  
+        - `regexp`(pattern)  
+            一个`RegExp`对象或字面量。该正则匹配的内容会被第二个参数的返回值替换掉，如需全部替换，需要加`g`标记
+        - `substr`(pattern)  
+            一个即将被第二个参数替换的字符串，**仅第一个匹配项**会被替换
+        - `newSubStr`(replacement)  
+            替换用的字符串，可以配合一些特殊的变量名使用，参考下面的 *使用字符串作为参数*
+        - `function`(replacement)  
+            用来创建替换用的字符串的函数，参考下面的 *使用函数作为参数*
+    - 返回  
+        一个被部分或全部替换的新字符串
+    - 使用字符串作为参数  
+        替换字符串可以插入下面的特殊变量名：
+        |变量名|代表的值|
+        |:----:|:----|
+        |`$$`|插入一个`"$"`|
+        |`$&`|插入匹配的子串|
+        |$`|插入当前匹配的子串左边的内容|
+        |`$'`|插入当前匹配的子串右边的内容|
+        |`$n`|如果第一个参数是`RegExp`对象，并且n是小于100的非负整数，那么插入第`n`个括号匹配的字符串，索引从1开始|
+    - 使用函数作为参数  
+        函数的返回值作为替换字符串。如果第一个参数是带有`g`标记的正则表达式，那么每次匹配函数都会被调用。  
+        下面是该函数的参数：
+        |参数名|代表的值|
+        |:----:|:----|
+        |`match`|匹配的子串（对应上述的`$&`）|
+        |`p1,p2,...`|如果`replace()`方法的第一个参数是一个`RegExp` 对象，则代表第n个括号匹配的字符串。（对应于上述的`$1，$2`等。）例如，如果是用 `/(\a+)(\b+)/` 这个来匹配，`p1` 就是匹配的 `\a+`，`p2` 就是匹配的 `\b+`|
+        |`offset`|匹配到的字符串在原字符串中的偏移量（比如原字符串是`abcd`，匹配到的子串是`bc`，那么这个参数值为`1`）|
+        |`string`|被匹配的原字符串|
+        |NamedCaptureGroup|命名捕获组匹配的对象|
+    - 示例
+        - **使用正则表达式脱敏手机号**
+        ``` js
+        const mobile = 13122334455;
+        // 因为replace()是String的方法，所以要先将手机号转换为String类型
+        let newMobile = String(mobile).replace(/(\d{3})\d*(\d{4})/, "$1****$2");
+        console.log(newMobile); // 131****4455
+        ```
+        - **在`replace()`中使用`global`和`ignore`**
+        ``` js
+        const str = "Apples are round, and apples are juicy.";
+        const reg = /apples/gi;
+        const newStr = str.replace(reg, "oranges");
+        console.log(newStr); // oranges are round, and oranges are juicy.
+        ```
+        - **交换字符串中的两个单词**
+        ``` js
+        const str = "John Smith";
+        const newStr = str.replace(/(\w+)\s(\w+)/, "$2 $1");
+        console.log(newStr); // "Smith John"
+        ```
+        - **使用函数修改匹配到的字符**
+        ``` js
+        // 在本例中，将匹配到的大写字母转为小写，并在前面添加连字符
+        const str = "borderTop, paddingLeft";
+        function func(match){
+            return `-${match.toLowerCase()}`;
+        }
+        const newStr = str.replace(/[A-Z]/g, func);
+        console.log(newStr); // "border-top, padding-left";
+        ```
+        - **将华氏温度转换为摄氏温度**
+        ``` js
+        // 华氏温度通过一个数字加"F"来表示
+        let fahrenheit= "212F";
+        let func = (str, p1, offset, s)=>{
+            console.log(str, p1, offset, s); // 212F 212 0 212F
+            return (Number(p1) - 32) * 5/9 + "°C";
+        }
+        let centigrade = fahrenheit.replace(/(\d*\.?\d+)F\b/, func);
+        console.log(centigrade); // 100°C
+        ```
+        - **使用行内函数和正则来避免循环**
+        ``` js
+        // 下例把字符串转换为对象数组（其元素为对象）
+        // 输入：一个由X Y 组成的字符串
+        // 输出：一个数组对象。X产生"on"状态，Y产生"off"状态
+        const str = "XYX88YX";
+        let arr = [];
+        str.replace(/(x)|(y)/gi, (match, p1, p2)=>{
+            if (p1) { arr.push({on: true}) }
+            else if (p2) { arr.push({on: false}) }
+        })
+        console.log(arr);
+        // [{on: true}, {on: false}, {on: true}, {on: false}, {on: true}];
+        ```
